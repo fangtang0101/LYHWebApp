@@ -3,7 +3,7 @@
 	padding: 0px;
 }
 .LYHNewsHeader {
-	background: orange;
+	background: transparent;
 	overflow: hidden;
 	width: 240px;
 	display: block;
@@ -13,19 +13,20 @@
 	margin:10px auto;
 }
 
-.LYHNewsHeader span{
+.LYHNewsHeader a{
 	display: block;
-	background: red;
-	/*width: 60px;*/
-	text-align: center;
-}
-.LYHNewsHeader_templ {
 	float: left;
+	text-align: center;
+	width: 25%;
+	background: white;
+	color: #333333;
+	font-size: 14px;
 }
-.bottom_Line {
-	display: block;
-    width: 60px;
-    height: 2px;
-    background: #0062CC!important;	
+.active-a {
+	/*下划线*/
+	border-bottom: 2px solid #f65151;
+	/*选中颜色*/
+	color: #f65151 !important;
 }
+
 
