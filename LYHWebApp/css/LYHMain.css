@@ -29,4 +29,14 @@
 	color: #f65151 !important;
 }
 
+/*图片轮播*/
+.LYHImageSycle {
+	background: red;
+	/*height: 50px;*/
+}
+/*修改Mui的原生大小（轮播图）*/
+.mui-slider {
+	height: 100px;
+}
+
 

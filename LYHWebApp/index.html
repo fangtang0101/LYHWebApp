@@ -7,17 +7,43 @@
 		<title></title>
 		<script src="js/mui.min.js"></script>
 		<link href="css/mui.min.css" rel="stylesheet" />
-
 		<link href="css/LYHMain.css" rel="stylesheet" />
-
 		<header class="mui-bar mui-bar-nav">
 			<div class="LYHNewsHeader">
 				<a class="active-a">推荐</a>
-				<a >订阅</a>
-				<a >公开课</a>
+				<a>订阅</a>
+				<a>公开课</a>
 				<a>病例</a>
+			</div>
+			<!--图片轮播-->
+			<div class="LYHImageSycle">
+				<div class="mui-slider">
+					<div class="mui-slider-group mui-slider-loop">
+						<!--支持循环，需要重复图片节点   0  1 2 3 0 1 2 3-->
+						<div class="mui-slider-item mui-slider-item-duplicate">
+							<a href="#"><img src="images/2.png" /></a>
+						</div>
+						<div class="mui-slider-item">
+							<a href="#"><img src="images/1.jpg" /></a>
+						</div>
+						<div class="mui-slider-item">
+							<a href="#"><img src="images/2.jpg" /></a>
+						</div>
+						<!--支持循环，需要重复图片节点-->
+						<div class="mui-slider-item mui-slider-item-duplicate">
+							<a href="#"><img src="images/1.jpg" /></a>
+						</div>
+					</div>
+
+					<!--//轮播图中间底部圆点-->
+					<div class="mui-slider-indicator">
+						<div class="mui-indicator mui-active"></div>
+						<div class="mui-indicator"></div>
+					</div>
+				</div>
 
 			</div>
+
 		</header>
 
 	</head>
@@ -29,28 +55,28 @@
 			ca.init();
 			//实现点击切换功能
 			var arrayTagA = document.getElementsByTagName('a');
-		
-			for (var a=0;a<arrayTagA.length;a++) {
+			for(var a = 0; a < arrayTagA.length; a++) {
 				//重要步骤，要特地给他标记index
 				arrayTagA[a].index = a;
 				//点击事件
-				arrayTagA[a].onclick=function(){
+				arrayTagA[a].onclick = function() {
 					//1.先将所有的 className = "" ,目的去掉下滑线
-				for (var b=0;b<arrayTagA.length;b++) {				
-					arrayTagA[b].className="";
-				}
+					for(var b = 0; b < arrayTagA.length; b++) {
+						arrayTagA[b].className = "";
+					}
 					//2.将this，也就是点击的这个className = active-a ,目的将下滑线加上
-					
-					this.className='active-a';
-					
-					
-				};
-				
-				
+					this.className = 'active-a';
+				}
 			}
-			
-			
-	
+			//图片轮播================================
+			castapp.pictureScroll({
+				callback: function(pictureNumber) {
+					//输出页数
+					console.log(pictureNumber);
+				},
+				isAutoScroll: true,
+				scrollTime: 3
+			});
 		</script>
 
 	</body>
