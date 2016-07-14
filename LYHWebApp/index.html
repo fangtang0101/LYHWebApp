@@ -9,6 +9,7 @@
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link href="css/LYHMain.css" rel="stylesheet" />
 		<header class="mui-bar mui-bar-nav">
+			<!--头部切换功能-->
 			<div class="LYHNewsHeader">
 				<a class="active-a">推荐</a>
 				<a>订阅</a>
@@ -34,7 +35,6 @@
 							<a href="#"><img src="images/1.jpg" /></a>
 						</div>
 					</div>
-
 					<!--//轮播图中间底部圆点-->
 					<div class="mui-slider-indicator">
 						<div class="mui-indicator mui-active"></div>
@@ -43,7 +43,67 @@
 				</div>
 
 			</div>
+			<!--最下面的cell-->
+			<ul class="mui-table-view">
+			    <li class="mui-table-view-cell mui-media">
+			        <a href="javascript:;">
+			            <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30" >
+			            <div class="mui-media-body">
+			                肺癌（title）
+			                <p class="mui-ellipsis">这是肺癌的sunmmy；能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+			                <!--标签-->
+			                <div class="LYHMark">
+			                	乳腺癌
+			                </div>
+			                <!--time + read + comment-->
+			                <div class="LYHLabelTimeCountRead">
+			                	06-24 阅读30 评论9
+			                </div>
+			            </div>
 
+			        </a>
+			    </li>
+			  
+			    <li class="mui-table-view-cell mui-media">
+			        <a href="javascript:;">
+			            <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30" >
+			            <div class="mui-media-body">
+			                肺癌（title）
+			                <p class="mui-ellipsis">这是肺癌的sunmmy；能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+			                <!--标签-->
+			                <div class="LYHMark">
+			                	乳腺癌
+			                </div>
+			                <!--time + read + comment-->
+			                <div class="LYHLabelTimeCountRead">
+			                	06-24 阅读30 评论9
+			                </div>
+			            </div>
+
+			        </a>
+			    </li>
+			  
+			   
+			  <li class="mui-table-view-cell mui-media">
+			        <a href="javascript:;">
+			            <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30" >
+			            <div class="mui-media-body">
+			                肺癌（title）
+			                <p class="mui-ellipsis">这是肺癌的sunmmy；能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+			                <!--标签-->
+			                <div class="LYHMark">
+			                	乳腺癌
+			                </div>
+			                <!--time + read + comment-->
+			                <div class="LYHLabelTimeCountRead">
+			                	06-24 阅读30 评论9
+			                </div>
+			            </div>
+
+			        </a>
+			    </li>
+			</ul>
+		
 		</header>
 
 	</head>
@@ -53,7 +113,7 @@
 		<script src="js/castapp.js"></script>
 		<script type="text/javascript">
 			ca.init();
-			//实现点击切换功能
+			//实现点击切换功能========================================
 			var arrayTagA = document.getElementsByTagName('a');
 			for(var a = 0; a < arrayTagA.length; a++) {
 				//重要步骤，要特地给他标记index
