@@ -5,19 +5,18 @@
 .LYHNewsHeader {
 	background: orange;
 	overflow: hidden;
-	width: 280px;
+	width: 240px;
 	display: block;
 	position: relative;
 	/*居中方式*/
 	display: block;
 	margin:10px auto;
-	
 }
 
 .LYHNewsHeader span{
 	display: block;
 	background: red;
-	width: 60px;
+	/*width: 60px;*/
 	text-align: center;
 }
 .LYHNewsHeader_templ {

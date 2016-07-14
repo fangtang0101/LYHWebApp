@@ -12,29 +12,31 @@
 
 		<header class="mui-bar mui-bar-nav">
 			<div class="LYHNewsHeader">
-				
+
 				<div class="LYHNewsHeader_templ LYHNewsHeader_recommend">
 					<span>推荐</span>
-					<span class="bottom_Line_recommend bottom_Line">
+					<div class="bottom_Line_recommend bottom_Line">
 						
-    					</span>
+    					</div>
 				</div>
 				<div class="LYHNewsHeader_templ LYHNewsHeader_order">
 					<span>订阅</span>
-					<span class="bottom_Line_order bottom_Line"style="display: none;">
+					<span class="bottom_Line_order bottom_Line"">
     					</span>
 				</div>
-					<div class="LYHNewsHeader_templ LYHNewsHeader_openClass">
-					<span>公开课</span>
-					<span class="bottom_Line_openClass bottom_Line"style="display: none;>
+				<div class="LYHNewsHeader_templ LYHNewsHeader_openClass">
+					<span >公开课</span>
+					<span class="bottom_Line_openClass bottom_Line">
     					</span>
 				</div>
-						<div class="LYHNewsHeader_templ LYHNewsHeader_sickCase">
+					<div class="LYHNewsHeader_templ LYHNewsHeader_sickCase">
 					<span>病例</span>
-					<span class="bottom_Line_sickCase bottom_Line"style="display: none;>
+					<span class="bottom_Line_sickCase bottom_Line" id="p2">
+						
     					</span>
 				</div>
-
+				
+			
 			</div>
 		</header>
 
@@ -46,30 +48,64 @@
 		<script type="text/javascript">
 			ca.init();
 			
-			var objNewsHeader = ca.className('LYHNewsHeader_templ');
 			
-				function clearAllButtonDisplay(){
-					for (var i=0;i<objNewsHeader.length;i++) {
-				objNewsHeader[i].display = none;
-			}
-			};
+
+	   var objNewsHeader =	 document.getElementsByClassName("LYHNewsHeader_templ");
+	   
+	   
+	   
+
+	  for (var a= 0 ; a <objNewsHeader.length ; a++){
+	  	
+//	  		  alert(objNewsHeader.length);
+	  	
+	  	objNewsHeader[a].addEventListener('tap',function(){
+	  		
+	  		document.getElementById("p2").style.display = "none";
+	  		
+	  		
+	  		
+	  		
+	  	});
+	  	
+	  	
+	  	
+	  	
+	  	
+	  };
+	   
+	   
 			
 			
-			for (var i=0;i<objNewsHeader.length;i++) {
-				objNewsHeader[i].addEventListener('tap',function(){
-					//每次的点击事件首先把所有的btn的display变成none
-					
-					clearAllButtonDisplay();
-					
-					//再将点击的那一个display变成block
-					
-				});
-			};
 			
-		
 			
-		
 			
+			
+//
+//			var objNewsHeader = ca.className('LYHNewsHeader_templ');
+//			
+//			var viewLine = ca.className('bottom_Line');
+//			
+//
+//			function clearAllButtonDisplay() {
+//				for(var i = 0; i < objNewsHeader.length; i++) {
+//						alert(viewLine);
+//					    alert(i);
+//					    alert(viewLine[i]);
+//					     alert(viewline[i].style);		
+//				}
+//			};
+//
+//			for(var i = 0; i < objNewsHeader.length; i++) {
+//				objNewsHeader[i].addEventListener('tap', function() {
+//					<!--//每次的点击事件首先把所有的btn的display变成none-->
+//
+//					clearAllButtonDisplay();
+//
+//					<!--//再将点击的那一个display变成block-->
+//
+//				});
+//			};
 		</script>
 
 	</body>
