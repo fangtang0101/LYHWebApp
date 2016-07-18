@@ -134,43 +134,58 @@
 				isAutoScroll: true,
 				scrollTime: 3
 			});
+
 			//数据请求部分 ============================
 
-			var url_request = 'http://192.168.1.235:8080/api/doc/getdocumentdetail'
+			var url_request = 'https://www.liangyihui.net/api/doc/getdocumentdetail'
 
 			var jsonData = {
-//				"head": {
-//					"cid": "F50DC431-5583-4989-970A-FD2686D2AF95",
-//					"cver": "2.0",
-//					"sid": "Model:iPhone---Version:9.3",
-//					"extensions": [{
-//						"name": "platform",
-//						"value": "iOS"
-//					}],
-//					"auth": "VnsTVS1F6vKno1XWqJTGrAwq0nm4bDKjgMr8\/aocQTg=",
-//					"auth2": "epiVz8qzQ5tSzln6hOzO8Q=="
-//				},
-				"docId": 13099
-			}
-//			alert(typeof jsonData);
-//			alert(jsonData.head.sid);
-
+					head: {
+						cid: "F50DC431-5583-4989-970A-FD2686D2AF95",
+						cver: "2.0",
+						sid: "Model:iPhone---Version:9.3",
+						extensions: [{
+							name: "platform",
+							value: "iOS"
+						}],
+//						"auth": "VnsTVS1F6vKno1XWqJTGrAwq0nm4bDKjgMr8\/aocQTg=",
+//						"auth2": "epiVz8qzQ5tSzln6hOzO8Q=="
+					},
+					docId: 13099
+				};
+				//ca.post=============== Content-Type：application/json
 			dongyi.post({
 				url: url_request,
 				data: jsonData,
 				succFn: function(data) {
-
-					alert(data);
-
+					//					alert(data);
 				}
 			});
+			//mui.post================= Content-Type：application/json
+			mui.post(url_request,
+				jsonData,
+				function(data) {
+					//					alert(JSON.stringify(data));
+				}, 'json');
 
-			//			mui.post(url_request,
-			//				jsonData,
-			//				function(data) {
-			//					alert('111');
-			//					alert(JSON.stringify(data));
-			//				}, 'json');
+			//原生的ajax的请求 ======================================
+			//1.创建request 请求对象
+			var xmlhttp;
+			if(window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp = new XMLHttpRequest();
+			} else { // code for IE6, IE5
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.onreadystatechange = function() {
+				if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+					alert('000');
+					alert(xmlhttp.responseText);
+					//					document.getElementById("myDiv").innerHTML = xmlhttp.responseText;
+				}
+			}
+			xmlhttp.open("POST", url_request, true);
+			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xmlhttp.send(jsonData);
 		</script>
 
 	</body>
