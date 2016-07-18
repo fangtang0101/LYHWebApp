@@ -22,7 +22,7 @@
 					<div class="mui-slider-group mui-slider-loop">
 						<!--支持循环，需要重复图片节点   0  1 2 3 0 1 2 3-->
 						<div class="mui-slider-item mui-slider-item-duplicate">
-							<a href="#"><img src="images/2.png" /></a>
+							<a href="#"><img src="images/2.jpg" /></a>
 						</div>
 						<div class="mui-slider-item">
 							<a href="#"><img src="images/1.jpg" /></a>
@@ -45,65 +45,64 @@
 			</div>
 			<!--最下面的cell-->
 			<ul class="mui-table-view">
-			    <li class="mui-table-view-cell mui-media">
-			        <a href="javascript:;">
-			            <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30" >
-			            <div class="mui-media-body">
-			                肺癌（title）
-			                <p class="mui-ellipsis">这是肺癌的sunmmy；能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
-			                <!--标签-->
-			                <div class="LYHMark">
-			                	乳腺癌
-			                </div>
-			                <!--time + read + comment-->
-			                <div class="LYHLabelTimeCountRead">
-			                	06-24 阅读30 评论9
-			                </div>
-			            </div>
+				<li class="mui-table-view-cell mui-media">
+					<a href="javascript:;">
+						<img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
+						<div class="mui-media-body">
+							肺癌（title）
+							<p class="mui-ellipsis">这是肺癌的sunmmy；能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+							<!--标签-->
+							<div class="LYHMark">
+								乳腺癌
+							</div>
+							<!--time + read + comment-->
+							<div class="LYHLabelTimeCountRead">
+								06-24 阅读30 评论9
+							</div>
+						</div>
 
-			        </a>
-			    </li>
-			  
-			    <li class="mui-table-view-cell mui-media">
-			        <a href="javascript:;">
-			            <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30" >
-			            <div class="mui-media-body">
-			                肺癌（title）
-			                <p class="mui-ellipsis">这是肺癌的sunmmy；能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
-			                <!--标签-->
-			                <div class="LYHMark">
-			                	乳腺癌
-			                </div>
-			                <!--time + read + comment-->
-			                <div class="LYHLabelTimeCountRead">
-			                	06-24 阅读30 评论9
-			                </div>
-			            </div>
+					</a>
+				</li>
 
-			        </a>
-			    </li>
-			  
-			   
-			  <li class="mui-table-view-cell mui-media">
-			        <a href="javascript:;">
-			            <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30" >
-			            <div class="mui-media-body">
-			                肺癌（title）
-			                <p class="mui-ellipsis">这是肺癌的sunmmy；能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
-			                <!--标签-->
-			                <div class="LYHMark">
-			                	乳腺癌
-			                </div>
-			                <!--time + read + comment-->
-			                <div class="LYHLabelTimeCountRead">
-			                	06-24 阅读30 评论9
-			                </div>
-			            </div>
+				<li class="mui-table-view-cell mui-media">
+					<a href="javascript:;">
+						<img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
+						<div class="mui-media-body">
+							肺癌（title）
+							<p class="mui-ellipsis">这是肺癌的sunmmy；能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+							<!--标签-->
+							<div class="LYHMark">
+								乳腺癌
+							</div>
+							<!--time + read + comment-->
+							<div class="LYHLabelTimeCountRead">
+								06-24 阅读30 评论9
+							</div>
+						</div>
 
-			        </a>
-			    </li>
+					</a>
+				</li>
+
+				<li class="mui-table-view-cell mui-media">
+					<a href="javascript:;">
+						<img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
+						<div class="mui-media-body">
+							肺癌（title）
+							<p class="mui-ellipsis">这是肺癌的sunmmy；能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+							<!--标签-->
+							<div class="LYHMark">
+								乳腺癌
+							</div>
+							<!--time + read + comment-->
+							<div class="LYHLabelTimeCountRead">
+								06-24 阅读30 评论9
+							</div>
+						</div>
+
+					</a>
+				</li>
 			</ul>
-		
+
 		</header>
 
 	</head>
@@ -137,6 +136,38 @@
 				isAutoScroll: true,
 				scrollTime: 3
 			});
+			//数据请求部分 ============================
+
+			var url_request = 'https://www.liangyihui.net/api/doc/getdocumentlist'
+
+			var jsonData = {
+				"head": {
+					sid: "Model:iPhone---Version:9.3",
+					extensions: [{
+						name: "platform",
+						value: "iOS"
+					}],
+					cver: "2.0.1",
+					cid: "E6849887-4856-47F6-B085-BB8259CE9430"
+				},
+				filters: [{
+					items: [{
+						filterId: 1
+					}],
+					filterGroupId: 1
+				}],
+				sort: {
+					pageIdx: 0,
+					pageSize: 25,
+					startTime: 1468817686.16371
+				}
+			}
+			mui.post(url_request,
+				jsonData,
+				function(data) {
+					alert('111');
+					alert(JSON.stringify(data));
+				}, 'json');
 		</script>
 
 	</body>
