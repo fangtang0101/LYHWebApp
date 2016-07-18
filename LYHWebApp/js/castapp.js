@@ -473,7 +473,7 @@ window.dongyi = window.dj = window.castapp = window.ca =  {
 				break;
 			case 'post':
 				oAjax.open('POST',json.url,true);
-				oAjax.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+				oAjax.setRequestHeader('Content-Type','application/json');
 				oAjax.send(json2url(json.data));
 				break;
 		}	
