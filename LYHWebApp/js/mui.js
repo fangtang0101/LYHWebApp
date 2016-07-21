@@ -2956,7 +2956,7 @@ Function.prototype.bind = Function.prototype.bind || function(to) {
 			xhr.overrideMimeType && xhr.overrideMimeType(mime);
 		}
 		if (settings.contentType || (settings.contentType !== false && settings.data && settings.type.toUpperCase() !== 'GET')) {
-			setHeader('Content-Type', settings.contentType || 'application/json');
+			setHeader('Content-Type', settings.contentType || 'application/x-www-form-urlencoded');
 		}
 		if (settings.headers) {
 			for (var name in settings.headers)
