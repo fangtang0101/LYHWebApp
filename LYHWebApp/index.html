@@ -6,206 +6,43 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
 		<script src="js/mui.min.js"></script>
+		<script src="js/castapp.js"></script>
+
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link href="css/LYHMain.css" rel="stylesheet" />
-		<header class="mui-bar mui-bar-nav">
-			<!--头部切换功能-->
-			<div class="LYHNewsHeader">
-				<a class="active-a">推荐</a>
-				<a>订阅</a>
-				<a>公开课</a>
-				<a>病例</a>
-			</div>
-			<!--图片轮播-->
-			<div class="LYHImageSycle">
-				<div class="mui-slider">
-					<div class="mui-slider-group mui-slider-loop">
-						<!--支持循环，需要重复图片节点   0  1 2 3 0 1 2 3-->
-						<div class="mui-slider-item mui-slider-item-duplicate">
-							<a href="#"><img src="images/2.jpg" /></a>
-						</div>
-						<div class="mui-slider-item">
-							<a href="#"><img src="images/1.jpg" /></a>
-						</div>
-						<div class="mui-slider-item">
-							<a href="#"><img src="images/2.jpg" /></a>
-						</div>
-						<!--支持循环，需要重复图片节点-->
-						<div class="mui-slider-item mui-slider-item-duplicate">
-							<a href="#"><img src="images/1.jpg" /></a>
-						</div>
-					</div>
-					<!--//轮播图中间底部圆点-->
-					<div class="mui-slider-indicator">
-						<div class="mui-indicator mui-active"></div>
-						<div class="mui-indicator"></div>
-					</div>
-				</div>
-
-			</div>
-			<!--最下面的cell-->
-			<ul class="mui-table-view">
-				<li class="mui-table-view-cell mui-media">
-					<a href="javascript:;">
-						<img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
-						<div class="mui-media-body">
-							肺癌（title）
-							<p class="mui-ellipsis">这是肺癌的sunmmy；能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
-							<!--标签-->
-							<div class="LYHMark">
-								乳腺癌
-							</div>
-							<!--time + read + comment-->
-							<div class="LYHLabelTimeCountRead">
-								06-24 阅读30 评论9
-							</div>
-						</div>
-					</a>
-				</li>
-				<li class="mui-table-view-cell mui-media">
-					<a href="javascript:;">
-						<img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
-						<div class="mui-media-body">
-							肺癌（title）
-							<p class="mui-ellipsis">这是肺癌的sunmmy；能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
-							<!--标签-->
-							<div class="LYHMark">
-								乳腺癌
-							</div>
-							<!--time + read + comment-->
-							<div class="LYHLabelTimeCountRead">
-								06-24 阅读30 评论9
-							</div>
-						</div>
-
-					</a>
-				</li>
-
-				<li class="mui-table-view-cell mui-media">
-					<a href="javascript:;">
-						<img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
-						<div class="mui-media-body">
-							肺癌（title）
-							<p class="mui-ellipsis">这是肺癌的sunmmy；能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
-							<!--标签-->
-							<div class="LYHMark">
-								乳腺癌
-							</div>
-							<!--time + read + comment-->
-							<div class="LYHLabelTimeCountRead">
-								06-24 阅读30 评论9
-							</div>
-						</div>
-
-					</a>
-				</li>
-			</ul>
-
-		</header>
-
 	</head>
 
 	<body>
 
-		<script src="js/castapp.js"></script>
-		<script type="text/javascript">
-			ca.init();
-			//实现点击切换功能========================================
-			var arrayTagA = document.getElementsByTagName('a');
-			for(var a = 0; a < arrayTagA.length; a++) {
-				//重要步骤，要特地给他标记index
-				arrayTagA[a].index = a;
-				//点击事件
-				arrayTagA[a].onclick = function() {
-					//1.先将所有的 className = "" ,目的去掉下滑线
-					for(var b = 0; b < arrayTagA.length; b++) {
-						arrayTagA[b].className = "";
-					}
-					//2.将this，也就是点击的这个className = active-a ,目的将下滑线加上
-					this.className = 'active-a';
-				}
-			}
-			//图片轮播================================
-			castapp.pictureScroll({
-				callback: function(pictureNumber) {
-					//输出页数
-					console.log(pictureNumber);
-				},
-				isAutoScroll: true,
-				scrollTime: 3
-			});
-			//数据请求部分 ============================
-			var url_request = 'https://www.liangyihui.net/api/doc/getdocumentdetail'
-			var jsonData = '{"head": {"sid": "Model:iPhone---Version:9.3","extensions": [{"name": "platform","value": "iOS"}],"cver": "2.0.1","cid": "E6849887-4856-47F6-B085-BB8259CE9430"},"docId":10779}';
-
-			var jsonOne = {
-				"head": {
-					"sid": "Model:iPhone---Version:9.3",
-					"extensions": [{
-						"name": "platform",
-						"value": "iOS"
-					}],
-					"cver": "2.0.1",
-					"cid": "E6849887-4856-47F6-B085-BB8259CE9430"
-				},
-				"docId": 10779
-			};
-
-			//		var bb =	'{"head":{"cid":"F50DC431-5583-4989-970A-FD2686D2AF95","cver":"2.0","sid":"Model:iPhone---Version:9.3","extensions":[{"name":"platform","value":"iOS"}],},"docId":13099}'
-
-			//ca.post=============== Content-Type：application/json
-			//			dongyi.post({
-			//				url: url_request,
-			//				data: jsonOne,
-			//				succFn: function(data) {
-			//					alert(data);
-			//				}
-			//			});
-			//mui.post================= Content-Type：application/json
-			//			mui.post(url_request,
-			//				jsonData,
-			//				function(data) {
-			//										alert(JSON.stringify(data));
-			//				}, 'json');
-
-			//			//原生的ajax的请求 ======================================
-			//			//1.创建request 请求对象
-			//			var xmlhttp;
-			//			if(window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
-			//				xmlhttp = new XMLHttpRequest();
-			//			} else { // code for IE6, IE5
-			//				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-			//			}
-			//			xmlhttp.onreadystatechange = function() {
-			//				if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-			//					alert('11');
-			//					alert(xmlhttp.responseText);
-			//					//					document.getElementById("myDiv").innerHTML = xmlhttp.responseText;
-			//				}
-			//			}
-			//			xmlhttp.open("POST", url_request, true);
-			//			xmlhttp.setRequestHeader("Content-type", "application/json");
-			//			xmlhttp.send(jsonData);
-
-			//			mui.post(url_request,
-			//				jsonData,
-			//				function(data) {
-			//					alert('111');
-			//					alert(JSON.stringify(data));
-			//				}, 'json');
-
-			//================= 调用本地的接口
-			ca.get({
-					url: 'http://192.168.0.160/www/fangdemo/Index.php/Index/add',
-					data: {phone:'55555'},
-					succFn: function(data) {
-						alert('11')
-						alert(data);
-					}
-				}
-			);
-		</script>
+		<nav class="mui-bar mui-bar-tab">
+			<a id="defaultTab" class="mui-tab-item mui-active" href="home.html">
+				<span class="mui-icon mui-icon-videocam"></span>
+				<span class="mui-tab-label">资讯</span>
+			</a>
+			<a class="mui-tab-item" href="questionAndAnswer.html">
+				<span class="mui-icon mui-icon-chatboxes"><span style="display: none;" class="mui-badge">1</span></span>
+				<span class="mui-tab-label">问答</span>
+			</a>
+			<a class="mui-tab-item" href="patient.html">
+				<span class="mui-icon mui-icon-home"></span>
+				<span class="mui-tab-label">患者</span>
+			</a>
+			<a class="mui-tab-item" href="tool.html">
+				<span class="mui-icon mui-icon-home"></span>
+				<span class="mui-tab-label">工具</span>
+			</a>
+			<a class="mui-tab-item" href="me.html">
+				<span class="mui-icon mui-icon-home"></span>
+				<span class="mui-tab-label">我</span>
+			</a>
+		</nav>
 
 	</body>
+
+	<script type="text/javascript">
+		ca.init(true);
+		var pathArray = ['home.html', 'questionAndAnswer.html','patient.html','tool.html','me.html'];
+		dongyi.tabBar(pathArray);
+	</script>
 
 </html>
