@@ -165,6 +165,17 @@
 							jsonData,
 							function(data) {
 							alert(JSON.stringify(data));
+							
+							var arrayData = data.docGroups;
+							
+							alert(arrayData);
+							
+							for (var a = 0 ; a < arrayData.length;a++) {
+								var obj =  arrayData[a];
+								alert('11');
+								alert(obj.title);
+							}
+							
 							}, 'json');
 
 			//			//原生的ajax的请求 ======================================
