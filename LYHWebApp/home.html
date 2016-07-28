@@ -97,34 +97,33 @@
 			});
 			//数据请求部分 ============================
 			var url_request = 'https://www.liangyihui.net/api/doc/getdocumentlist'
-				//			var jsonData = '{"head": {"sid": "Model:iPhone---Version:9.3","extensions": [{"name": "platform","value": "iOS"}],"cver": "2.0.1","cid": "E6849887-4856-47F6-B085-BB8259CE9430"},"docId":10779}';
-
-			var jsonData = '{"head" : {"sid" : "Model:iPhone---Version:9.3","extensions" : [{"name" : "platform","value" : "iOS"}],"cver" : "1.7","cid" : "B2385F39-43BA-4991-882B-CBAC05B7EBC3"},"filters" : [{"items" : [{"filterId" : 1}],"filterGroupId" : 1}],"sort" : {"pageIdx" : 0,"pageSize" : 25,"startTime" : 1469453891.52831}}'
-
-			//ca.post=============== Content-Type：application/json
-			//			dongyi.post({
-			//				url: url_request,
-			//				data: jsonOne,
-			//				succFn: function(data) {
-			//					alert(data);
-			//				}
-			//			});
+			var jsonData ='{"head":{"sid":"Model:iPod touch---Version:9.0.2","extensions":[{"name":"platform","value":"iOS"}],"cver":"2.0.2","cid":"61B711D4-0087-4C94-9D7F-2632A9BC43B5"},"filters":[{"items":[{"filterId":1}],"filterGroupId": 1}],"sort":{"pageIdx":0,"pageSize":25,"startTime":1469696344.835954}}'
 			//mui.post================= Content-Type：application/json
-
 			var calssOut = document.getElementById('class-boxout');
-			alert(typeof(jsonData));
 			mui.post(url_request,
 				jsonData,
 				function(data) {
-					alert(JSON.stringify(data));
+					alert('11');
+//					alert(JSON.stringify(data));
 					var arrayData = data.docGroups;
-					var arrayObj = arrayData[0].documents;
+					var arrayObj = arrayData['0'].documents;
 					for(var a = 0; a < arrayObj.length; a++) {
 						var obj = arrayObj[a];
 						var temp = newsCell_tmpl.itemTmpl(obj);
 						calssOut.innerHTML += temp;
 					}
 				}, 'json');
+
+			/*
+				//ca.post=============== Content-Type：application/json
+							dongyi.post({
+								url: url_request,
+								data: jsonOne,
+								succFn: function(data) {
+									alert(data);
+								}
+							});
+							*/
 
 			//			//原生的ajax的请求 ======================================
 			//			//1.创建request 请求对象

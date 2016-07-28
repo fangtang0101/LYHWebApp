@@ -7,7 +7,8 @@
 			var contentCell = '这是内容';
 			var markCell = 'mark';
 			var timeCell = '这是时间time';
-			var tmpl = '<li class="mui-table-view-cell mui-media">' +
+			var tmpl = '<ul class="mui-table-view" >'+
+			'<li class="mui-table-view-cell mui-media">' +
 				'<a href="javascript:;">' +
 				'<img class="mui-media-object mui-pull-left" src="' + imageUrl + '">' +
 				'<div class="mui-media-body">' +
@@ -17,7 +18,8 @@
 				'<div class="LYHLabelTimeCountRead">' + timeCell + '</div>' +
 				'</div>'+
 				'</a>' +
-				'</li>';
+				'</li>'+
+				'</ul>';
 			return tmpl;
 		},
 	};
