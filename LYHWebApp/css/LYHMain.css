@@ -1,7 +1,8 @@
-*{
+* {
 	margin: 0px;
 	padding: 0px;
 }
+
 .LYHNewsHeader {
 	background: transparent;
 	overflow: hidden;
@@ -10,10 +11,10 @@
 	position: relative;
 	/*居中方式*/
 	display: block;
-	margin:10px auto;
+	margin: 10px auto;
 }
 
-.LYHNewsHeader a{
+.LYHNewsHeader a {
 	display: block;
 	float: left;
 	text-align: center;
@@ -22,6 +23,7 @@
 	color: #333333;
 	font-size: 14px;
 }
+
 .active-a {
 	/*下划线*/
 	border-bottom: 2px solid #f65151;
@@ -29,29 +31,41 @@
 	color: #f65151 !important;
 }
 
+
 /*图片轮播*/
+
 .LYHImageSycle {
 	background: red;
 	/*height: 50px;*/
 }
+
+
 /*修改Mui的原生大小（轮播图）*/
+
 .mui-slider {
 	height: 100px;
 }
 
+
 /*最下部分的Cell*/
+
 .mui-table-view-cell {
 	height: 100px;
 }
+
 .mui-media-body {
 	height: 100;
 }
+
 .mui-media-object {
 	max-width: 90px;
 	width: 90px;
 	height: 90px!important;
 }
+
+
 /*标签*/
+
 .LYHMark {
 	color: #f65151;
 	font-size: 12px;
@@ -62,6 +76,7 @@
 	top: 10px;
 	/*height: 35px;*/
 }
+
 .LYHLabelTimeCountRead {
 	float: right;
 	font-size: 12px;
@@ -73,4 +88,52 @@
 }
 
 
+/*我部分的css*/
 
+.LYHMe-Cell-Header {
+	background: white;
+	/*position: relative;*/
+	width: 100%;
+	height: 80px;
+}
+
+.LYHMe-Cell-Header-imageIcon {
+	width: 30%;
+	height: 100%;
+	background: red;
+	float: left;
+}
+.LYHMe-Cell-Header-imageIcon img {
+	width: 90%;
+	height: 90%;
+	border-radius: 30px;;
+}
+
+.LYHMe-Cell-Header-rightContent {
+	width: 70%;
+	height: 100%;
+	background: orange;
+	float: left;
+}
+.LYHMe-Cell-Header-rightContent-name {
+	font-size: 17px;
+	height: 20px;
+}
+.LYHMe-Cell-Header-rightContent-hosptial {
+	font-size: 14px;
+	background: blue;
+	height: 60px;
+	/*div中的行内高度   *** 真尼玛的奇葩*/  
+	line-height: 100px;
+}
+/*.LYHMe-Cell-Header-rightContent-hosptial p {
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle !important;
+}*/
+
+
+.LYHMe-Cell-Header-temp {
+	/*position: absolute;*/
+	/*float: left !important;*/
+}
