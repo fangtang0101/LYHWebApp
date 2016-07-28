@@ -97,52 +97,36 @@
 			});
 			//数据请求部分 ============================
 			var url_request = 'https://www.liangyihui.net/api/doc/getdocumentlist'
-			var jsonData ='{"head":{"sid":"Model:iPod touch---Version:9.0.2","extensions":[{"name":"platform","value":"iOS"}],"cver":"2.0.2","cid":"61B711D4-0087-4C94-9D7F-2632A9BC43B5"},"filters":[{"items":[{"filterId":1}],"filterGroupId": 1}],"sort":{"pageIdx":0,"pageSize":25,"startTime":1469696344.835954}}'
-			//mui.post================= Content-Type：application/json
+			var jsonData = '{"head":{"sid":"Model:iPod touch---Version:9.0.2","extensions":[{"name":"platform","value":"iOS"}],"cver":"2.0.2","cid":"61B711D4-0087-4C94-9D7F-2632A9BC43B5"},"filters":[{"items":[{"filterId":1}],"filterGroupId": 1}],"sort":{"pageIdx":0,"pageSize":25,"startTime":1469696344.835954}}'
 			var calssOut = document.getElementById('class-boxout');
-			mui.post(url_request,
-				jsonData,
-				function(data) {
-					alert('11');
-//					alert(JSON.stringify(data));
+
+			//			//原生的ajax的请求 ======================================
+			//1.创建request 请求对象
+			var xmlhttp;
+			if(window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp = new XMLHttpRequest();
+			} else { // code for IE6, IE5
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.onreadystatechange = function() {
+				if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+					alert(xmlhttp.responseText);
+					alert(typeof(xmlhttp.responseText))
+					var data = JSON.parse(xmlhttp.responseText);
+					alert(typeof(data));
 					var arrayData = data.docGroups;
 					var arrayObj = arrayData['0'].documents;
+					alert(arrayObj.length);
 					for(var a = 0; a < arrayObj.length; a++) {
 						var obj = arrayObj[a];
 						var temp = newsCell_tmpl.itemTmpl(obj);
 						calssOut.innerHTML += temp;
 					}
-				}, 'json');
-
-			/*
-				//ca.post=============== Content-Type：application/json
-							dongyi.post({
-								url: url_request,
-								data: jsonOne,
-								succFn: function(data) {
-									alert(data);
-								}
-							});
-							*/
-
-			//			//原生的ajax的请求 ======================================
-			//			//1.创建request 请求对象
-			//			var xmlhttp;
-			//			if(window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
-			//				xmlhttp = new XMLHttpRequest();
-			//			} else { // code for IE6, IE5
-			//				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-			//			}
-			//			xmlhttp.onreadystatechange = function() {
-			//				if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-			//					alert('11');
-			//					alert(xmlhttp.responseText);
-			//					//					document.getElementById("myDiv").innerHTML = xmlhttp.responseText;
-			//				}
-			//			}
-			//			xmlhttp.open("POST", url_request, true);
-			//			xmlhttp.setRequestHeader("Content-type", "application/json");
-			//			xmlhttp.send(jsonData);
+				}
+			}
+			xmlhttp.open("POST", url_request, true);
+			xmlhttp.setRequestHeader("Content-type", "application/json");
+			xmlhttp.send(jsonData);
 
 			//			mui.post(url_request,
 			//				jsonData,
@@ -161,6 +145,40 @@
 			//					}
 			//				}
 			//			);
+			//ca.post=============== Content-Type：application/json
+			//			dongyi.post({
+			//				url: url_request,
+			//				data: jsonOne,
+			//				succFn: function(data) {
+			//					alert(data);
+			//				}
+			//			});
+			//mui.post================= Content-Type：application/json
+
+			//			mui.post(url_request,
+			//				jsonData,
+			//				function(data) {
+			//					alert('11');
+			//					alert(JSON.stringify(data));
+			//					var arrayData = data.docGroups;
+			//					var arrayObj = arrayData['0'].documents;
+			//					for(var a = 0; a < arrayObj.length; a++) {
+			//						var obj = arrayObj[a];
+			//						var temp = newsCell_tmpl.itemTmpl(obj);
+			//						calssOut.innerHTML += temp;
+			//					}
+			//				}, 'json');
+
+			/*
+				//ca.post=============== Content-Type：application/json
+							dongyi.post({
+								url: url_request,
+								data: jsonOne,
+								succFn: function(data) {
+									alert(data);
+								}
+							});
+							*/
 		</script>
 
 	</body>
