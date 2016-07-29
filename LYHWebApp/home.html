@@ -90,7 +90,7 @@
 			castapp.pictureScroll({
 				callback: function(pictureNumber) {
 					//输出页数
-					//					console.log(pictureNumber);
+					//console.log(pictureNumber);
 				},
 				isAutoScroll: true,
 				scrollTime: 3
@@ -99,8 +99,7 @@
 			var url_request = 'https://www.liangyihui.net/api/doc/getdocumentlist'
 			var jsonData = '{"head":{"sid":"Model:iPod touch---Version:9.0.2","extensions":[{"name":"platform","value":"iOS"}],"cver":"2.0.2","cid":"61B711D4-0087-4C94-9D7F-2632A9BC43B5"},"filters":[{"items":[{"filterId":1}],"filterGroupId": 1}],"sort":{"pageIdx":0,"pageSize":25,"startTime":1469696344.835954}}'
 			var calssOut = document.getElementById('class-boxout');
-
-			//			//原生的ajax的请求 ======================================
+			//原生的ajax的请求 ======================================
 			//1.创建request 请求对象
 			var xmlhttp;
 			if(window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
@@ -110,8 +109,6 @@
 			}
 			xmlhttp.onreadystatechange = function() {
 				if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-					alert(xmlhttp.responseText);
-					alert(typeof(xmlhttp.responseText))
 					var data = JSON.parse(xmlhttp.responseText);
 					alert(typeof(data));
 					var arrayData = data.docGroups;
@@ -127,58 +124,6 @@
 			xmlhttp.open("POST", url_request, true);
 			xmlhttp.setRequestHeader("Content-type", "application/json");
 			xmlhttp.send(jsonData);
-
-			//			mui.post(url_request,
-			//				jsonData,
-			//				function(data) {
-			//					alert('111');
-			//					alert(JSON.stringify(data));
-			//				}, 'json');
-
-			//================= 调用本地的接口
-			//			ca.get({
-			//					url: 'http://192.168.0.160/www/fangdemo/Index.php/Index/add',
-			//					data: {phone:'55555'},
-			//					succFn: function(data) {
-			//						alert('11')
-			//						alert(data);
-			//					}
-			//				}
-			//			);
-			//ca.post=============== Content-Type：application/json
-			//			dongyi.post({
-			//				url: url_request,
-			//				data: jsonOne,
-			//				succFn: function(data) {
-			//					alert(data);
-			//				}
-			//			});
-			//mui.post================= Content-Type：application/json
-
-			//			mui.post(url_request,
-			//				jsonData,
-			//				function(data) {
-			//					alert('11');
-			//					alert(JSON.stringify(data));
-			//					var arrayData = data.docGroups;
-			//					var arrayObj = arrayData['0'].documents;
-			//					for(var a = 0; a < arrayObj.length; a++) {
-			//						var obj = arrayObj[a];
-			//						var temp = newsCell_tmpl.itemTmpl(obj);
-			//						calssOut.innerHTML += temp;
-			//					}
-			//				}, 'json');
-
-			/*
-				//ca.post=============== Content-Type：application/json
-							dongyi.post({
-								url: url_request,
-								data: jsonOne,
-								succFn: function(data) {
-									alert(data);
-								}
-							});
-							*/
 		</script>
 
 	</body>
