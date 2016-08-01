@@ -46,7 +46,7 @@
 		<!--最下面的cell-->
 		<div>
 			<ul class="mui-table-view" id="class-boxout">
-				<li class="mui-table-view-cell mui-media">
+				<li class="mui-table-view-cell mui-media" style="display: none;">
 					<a href="javascript:;">
 						<img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
 						<div class="mui-media-body">
@@ -100,6 +100,7 @@
 			var jsonData = '{"head":{"sid":"Model:iPod touch---Version:9.0.2","extensions":[{"name":"platform","value":"iOS"}],"cver":"2.0.2","cid":"61B711D4-0087-4C94-9D7F-2632A9BC43B5"},"filters":[{"items":[{"filterId":1}],"filterGroupId": 1}],"sort":{"pageIdx":0,"pageSize":25,"startTime":1469696344.835954}}'
 			var calssOut = document.getElementById('class-boxout');
 			//原生的ajax的请求 ======================================
+			
 			//1.创建request 请求对象
 			var xmlhttp;
 			if(window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari

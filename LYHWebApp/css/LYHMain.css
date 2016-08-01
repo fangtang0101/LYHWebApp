@@ -89,51 +89,93 @@
 
 
 /*我部分的css*/
-
 .LYHMe-Cell-Header {
 	background: white;
-	/*position: relative;*/
 	width: 100%;
 	height: 80px;
+	float: left;
 }
 
 .LYHMe-Cell-Header-imageIcon {
-	width: 30%;
+	width: 80px;
 	height: 100%;
 	background: red;
 	float: left;
 }
+
 .LYHMe-Cell-Header-imageIcon img {
-	width: 90%;
-	height: 90%;
-	border-radius: 30px;;
+	width: 100%;
+	height: 100%;
+	border-radius: 40px;
 }
 
 .LYHMe-Cell-Header-rightContent {
 	width: 70%;
 	height: 100%;
-	background: orange;
+	/*background: orange;*/
 	float: left;
 }
+
 .LYHMe-Cell-Header-rightContent-name {
 	font-size: 17px;
 	height: 20px;
+	position: relative;
+	top: 15px;
 }
+
 .LYHMe-Cell-Header-rightContent-hosptial {
 	font-size: 14px;
-	background: blue;
+	/*background: blue;*/
 	height: 60px;
-	/*div中的行内高度   *** 真尼玛的奇葩*/  
-	line-height: 100px;
+	/*div中的行内高度   *** 真尼玛的奇葩*/
+	line-height: 80px;
 }
-/*.LYHMe-Cell-Header-rightContent-hosptial p {
-	display: inline-block;
+
+/*下面的cell*/
+.MeCellLeftIcon {
+	float: left;
 	height: 100%;
-	vertical-align: middle !important;
-}*/
-
-
-.LYHMe-Cell-Header-temp {
-	/*position: absolute;*/
-	/*float: left !important;*/
 }
+
+.MeCellLeftIcon img {
+	width: 30px !important;
+	height: 30px !important;
+	position: relative;
+	top: 6px;
+}
+
+.MeCellTItle {
+	float: left;
+	font-size: 14px;
+	margin-top: 5px;
+	position: relative;
+	top: 6px;
+	left: 5px;
+}
+.MeCellRightIcon {
+	float: right;
+	margin-top: 5px;
+}
+
+.MeCellRightIcon img {
+	width: 20px !important;
+	height: 20px !important;
+	margin-top: 6px;
+}
+
+.MeCellOther {
+	float: right;
+	font-size: 14px;
+	margin-top: 10px;
+}
+.MeSectionTwo {
+	float: left;
+	height: 44px;
+	width: 100%;
+	/*background: #2AC845;*/
+	margin-top: 10px;
+}
+.classClear {
+	clear: both;
+}
+
