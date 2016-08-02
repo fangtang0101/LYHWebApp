@@ -92,10 +92,10 @@
 .LYHMe-Cell-Header {
 	background: white;
 	width: 100%;
-	height: 80px;
+	height: 90px;
 	float: left;
+	padding: 5px;
 }
-
 .LYHMe-Cell-Header-imageIcon {
 	width: 80px;
 	height: 100%;
@@ -114,6 +114,7 @@
 	height: 100%;
 	/*background: orange;*/
 	float: left;
+	margin-left: 5px;
 }
 
 .LYHMe-Cell-Header-rightContent-name {
@@ -162,7 +163,6 @@
 	height: 20px !important;
 	margin-top: 6px;
 }
-
 .MeCellOther {
 	float: right;
 	font-size: 14px;
@@ -172,8 +172,16 @@
 	float: left;
 	height: 44px;
 	width: 100%;
-	/*background: #2AC845;*/
+	background: white;
 	margin-top: 10px;
+}
+
+.MeSectionFour {
+	margin-top: 0px !important;
+	/*background: red !important;*/
+}
+.classAddBottomLine {
+	border-bottom: 1px solid #ededed;
 }
 .classClear {
 	clear: both;
