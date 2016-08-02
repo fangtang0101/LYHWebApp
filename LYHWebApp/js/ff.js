@@ -27,7 +27,6 @@ function ff_get(url_request, jsonData) {
 				alert("返回类型出错");
 				return null;
 			}
-			alert(xmlhttp.responseText);
 			return data;
 		}
 	}

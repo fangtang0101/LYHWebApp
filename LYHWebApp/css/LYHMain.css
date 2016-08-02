@@ -131,7 +131,6 @@
 	/*div中的行内高度   *** 真尼玛的奇葩*/
 	line-height: 80px;
 }
-
 /*下面的cell*/
 .MeCellLeftIcon {
 	float: left;
@@ -153,6 +152,7 @@
 	top: 6px;
 	left: 5px;
 }
+
 .MeCellRightIcon {
 	float: right;
 	margin-top: 5px;
@@ -183,7 +183,6 @@
 .classAddBottomLine {
 	border-bottom: 1px solid #ededed;
 }
-.classClear {
+.publishClassClear {
 	clear: both;
 }
-
