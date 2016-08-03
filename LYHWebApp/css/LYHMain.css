@@ -186,3 +186,23 @@
 .publishClassClear {
 	clear: both;
 }
+
+/*tool的css部分*/
+.toolClassCell {
+	height: 44px;
+	background: red;
+}
+.toolClassCell-LeftIcon {
+	background: orange;
+	float: left;
+	margin-top: 10px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.toolClassCell-Right {
+	background: blue;
+	float: left;
+	margin: 5px;
+	margin-top: 10px;
+}
