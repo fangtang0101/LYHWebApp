@@ -66,37 +66,90 @@
 				</li>
 			</ul>
 		</div>
-
 		<script src="js/castapp.js"></script>
 		<script src="js/LYHMain.js"></script>
 		<script src="js/mui.js"></script>
 		<script type="text/javascript">
 			ca.init();
+			var url_request = 'https://www.liangyihui.net/api/doc/getdocumentlist'
+			var jsonData = '{"head":{"sid":"Model:iPod touch---Version:9.0.2","extensions":[{"name":"platform","value":"iOS"}],"cver":"2.0.2","cid":"61B711D4-0087-4C94-9D7F-2632A9BC43B5"},"filters":[{"items":[{"filterId":1}],"filterGroupId": 1}],"sort":{"pageIdx":0,"pageSize":25,"startTime":1469696344.835954}}'
+			var calssOut = document.getElementById('class-boxout');
+			var classSlider = document.getElementsByClassName('mui-slider')[0];
+
 			//实现点击切换功能========================================
+			var index = 0;
 			var arrayTagA = document.getElementsByTagName('a');
 			for(var a = 0; a < arrayTagA.length; a++) {
-				//重要步骤，要特地给他标记index
 				arrayTagA[a].index = a;
 				//点击事件
 				arrayTagA[a].onclick = function() {
+					//判断是否点击了相同的channal
+					if(this.index === index) {
+						alert('当前频道已经是您点击的频道');
+						return;
+					}
+					index = this.index;
 					//1.先将所有的 className = "" ,目的去掉下滑线
 					for(var b = 0; b < arrayTagA.length; b++) {
 						arrayTagA[b].className = "";
 					}
 					//2.将this，也就是点击的这个className = active-a ,目的将下滑线加上
 					this.className = 'active-a';
-					//执行function
-//					alert(this.innerHTML);
-//					alert(typeof(this.innerHTML));
-					newsCell_tmpl.onClickChnanal(this.innerHTML);
-					
-					
-					
+					var channal = this.innerHTML;
+					if(channal === '推荐') {
+						
+						
+						
+						classSlider.style.display = "block";
+						calssOut.innerHTML = '';
+						ff_get(url_request, jsonData, function(data) {
+							var arrayData = data.docGroups;
+							var arrayObj = arrayData['0'].documents;
+							for(var a = 0; a < arrayObj.length; a++) {
+								var obj = arrayObj[a];
+								var temp = newsCell_tmpl.itemTmpl(obj);
+								calssOut.innerHTML += temp;
+							}
+						});
+					} else if(channal === '订阅') {
+						classSlider.style.display = "none";
+						calssOut.innerHTML = '';
+						ff_get(url_request, jsonData, function(data) {
+							var arrayData = data.docGroups;
+							var arrayObj = arrayData['0'].documents;
+							for(var a = 0; a < arrayObj.length; a++) {
+								var obj = arrayObj[a];
+								var temp = newsCell_tmpl.itemTmpl(obj);
+								calssOut.innerHTML += temp;
+							}
+						});
+					} else if(channal === '公开课') {
+						classSlider.style.display = "none";
+						calssOut.innerHTML = '';
+						ff_get(url_request, jsonData, function(data) {
+							var arrayData = data.docGroups;
+							var arrayObj = arrayData['0'].documents;
+							for(var a = 0; a < arrayObj.length; a++) {
+								var obj = arrayObj[a];
+								var temp = newsCell_tmpl.itemTmpl(obj);
+								calssOut.innerHTML += temp;
+							}
+						});
+					} else {
+						classSlider.style.display = "none";
+						calssOut.innerHTML = '';
+						ff_get(url_request, jsonData, function(data) {
+							var arrayData = data.docGroups;
+							var arrayObj = arrayData['0'].documents;
+							for(var a = 0; a < arrayObj.length; a++) {
+								var obj = arrayObj[a];
+								var temp = newsCell_tmpl.itemTmpl(obj);
+								calssOut.innerHTML += temp;
+							}
+						});
+					}
 				}
 			}
-			
-			
-			
 			//图片轮播================================
 			castapp.pictureScroll({
 				callback: function(pictureNumber) {
@@ -107,35 +160,40 @@
 				scrollTime: 3
 			});
 			//数据请求部分 ============================		
-			var url_request = 'https://www.liangyihui.net/api/doc/getdocumentlist'
-			var jsonData = '{"head":{"sid":"Model:iPod touch---Version:9.0.2","extensions":[{"name":"platform","value":"iOS"}],"cver":"2.0.2","cid":"61B711D4-0087-4C94-9D7F-2632A9BC43B5"},"filters":[{"items":[{"filterId":1}],"filterGroupId": 1}],"sort":{"pageIdx":0,"pageSize":25,"startTime":1469696344.835954}}'
-			var calssOut = document.getElementById('class-boxout');
 
-			//原生的ajax的请求 ======================================
-			//1.创建request 请求对象
-			var xmlhttp;
-			if(window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
-				xmlhttp = new XMLHttpRequest();
-			} else { // code for IE6, IE5
-				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-			}
-			xmlhttp.onreadystatechange = function() {
-				if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-					var data = JSON.parse(xmlhttp.responseText);
-					var arrayData = data.docGroups;
-					var arrayObj = arrayData['0'].documents;
-					alert(arrayObj.length);
-					for(var a = 0; a < arrayObj.length; a++) {
-						var obj = arrayObj[a];
-						var temp = newsCell_tmpl.itemTmpl(obj);
-						calssOut.innerHTML += temp;
-					}
+			ff_get(url_request, jsonData, function(data) {
+				var arrayData = data.docGroups;
+				var arrayObj = arrayData['0'].documents;
+				for(var a = 0; a < arrayObj.length; a++) {
+					var obj = arrayObj[a];
+					var temp = newsCell_tmpl.itemTmpl(obj);
+					calssOut.innerHTML += temp;
 				}
-			}
-			xmlhttp.open("POST", url_request, true);
-			xmlhttp.setRequestHeader("Content-type", "application/json");
-			xmlhttp.send(jsonData);
-			
+			});
+			//原生的ajax的请求 ======================================
+			//			//1.创建request 请求对象
+			//			var xmlhttp;
+			//			if(window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+			//				xmlhttp = new XMLHttpRequest();
+			//			} else { // code for IE6, IE5
+			//				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			//			}
+			//			xmlhttp.onreadystatechange = function() {
+			//				if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			//					var data = JSON.parse(xmlhttp.responseText);
+			//					var arrayData = data.docGroups;
+			//					var arrayObj = arrayData['0'].documents;
+			//					alert(arrayObj.length);
+			//					for(var a = 0; a < arrayObj.length; a++) {
+			//						var obj = arrayObj[a];
+			//						var temp = newsCell_tmpl.itemTmpl(obj);
+			//						calssOut.innerHTML += temp;
+			//					}
+			//				}
+			//			}
+			//			xmlhttp.open("POST", url_request, true);
+			//			xmlhttp.setRequestHeader("Content-type", "application/json");
+			//			xmlhttp.send(jsonData);
 		</script>
 
 	</body>

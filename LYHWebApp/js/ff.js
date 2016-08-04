@@ -1,9 +1,6 @@
-//主要是方春高封装的一些 很多公用的东西（任何app都可以用的）
+//主要是封装的一些 很多公用的东西（任何app都可以用的）
 //1.网络请求
-function ff_get(url_request, jsonData) {
-	
-	alert('444');
-	
+function ff_get(url_request, jsonData,funcSucess) {
 	//1.类型检查
 	if(typeof(url_request) != "string") {
 		alert("您传入的url类型不对，应该为string，请检查")
@@ -25,9 +22,9 @@ function ff_get(url_request, jsonData) {
 			var data = JSON.parse(xmlhttp.responseText);
 			if (typeof(data)!="object") {
 				alert("返回类型出错");
-				return null;
+			}else{
+				funcSucess(data);
 			}
-			return data;
 		}
 	}
 	xmlhttp.open("POST", url_request, true);
