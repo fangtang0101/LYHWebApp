@@ -1,6 +1,5 @@
 (function() {
 	window.newsCell_tmpl = {
-
 		//点击订阅 推荐 公开课 病例
 		onClickChnanal: function(string) {
 			alert('22');
@@ -38,7 +37,6 @@ onClickChnanal: function(string) {
 		alert('22');
 		alert(string)
 };
-
 	(function() {
 		window.my_tmpl = {
 
