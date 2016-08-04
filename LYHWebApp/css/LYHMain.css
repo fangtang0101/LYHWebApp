@@ -180,7 +180,7 @@
 	margin-top: 0px !important;
 	/*background: red !important;*/
 }
-.classAddBottomLine {
+.publishAddBottomLine {
 	border-bottom: 1px solid #ededed;
 }
 .publishClassClear {
@@ -190,19 +190,19 @@
 /*tool的css部分*/
 .toolClassCell {
 	height: 44px;
-	background: red;
+	background: white;
 }
 .toolClassCell-LeftIcon {
-	background: orange;
+	/*background: orange;*/
 	float: left;
 	margin-top: 10px;
 	margin-left: 5px;
 	margin-right: 5px;
 }
-
 .toolClassCell-Right {
-	background: blue;
+	/*background: blue;*/
 	float: left;
 	margin: 5px;
 	margin-top: 10px;
+	width: 90%;
 }
