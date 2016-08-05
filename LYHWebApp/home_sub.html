@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
@@ -8,72 +9,80 @@
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link href="css/LYHMain.css" rel="stylesheet" />
 		<script src="js/ff.js"></script>
-		<header class="mui-bar mui-bar-nav">
-			<!--头部切换功能-->
-			<div class="LYHNewsHeader">
+		<!--<header class="mui-bar mui-bar-nav">-->
+		<!--头部切换功能-->
+		<!--<div class="LYHNewsHeader">
 				<a class="active-a">推荐</a>
 				<a>订阅</a>
 				<a>公开课</a>
 				<a>病例</a>
 			</div>
-		</header>
+		</header>-->
 	</head>
+
 	<body>
 		<!--下拉刷新容器-->
-	<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
-		<div class="mui-scroll">
-		</div>
-		<!--图片轮播-->
-		<div class="LYHImageSycle">
-			<div class="mui-slider">
-				<div class="mui-slider-group mui-slider-loop">
-					<div class="mui-slider-item mui-slider-item-duplicate">
-						<a href="#"><img src="images/2.jpg" /></a>
-					</div>
-					<div class="mui-slider-item">
-						<a href="#"><img src="images/1.jpg" /></a>
-					</div>
-					<div class="mui-slider-item">
-						<a href="#"><img src="images/2.jpg" /></a>
-					</div>
-					<div class="mui-slider-item mui-slider-item-duplicate">
-						<a href="#"><img src="images/1.jpg" /></a>
-					</div>
-				</div>
-				<div class="mui-slider-indicator">
-					<div class="mui-indicator mui-active"></div>
-					<div class="mui-indicator"></div>
-				</div>
-			</div>
-		</div>
-		<!--最下面的cell-->
-		<div>
-			<ul class="mui-table-view" id="class-boxout">
-				<li class="mui-table-view-cell mui-media" style="display: none;">
-					<a href="javascript:;">
-						<img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
-						<div class="mui-media-body">
-							肺癌（title）
-							<p class="mui-ellipsis">这是肺癌的sunmmy；能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
-							<!--标签-->
-							<div class="LYHMark">
-								乳腺癌
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<!--图片轮播-->
+				<div class="LYHImageSycle">
+					<div class="mui-slider">
+						<div class="mui-slider-group mui-slider-loop">
+							<div class="mui-slider-item mui-slider-item-duplicate">
+								<a href="#"><img src="images/2.jpg" /></a>
 							</div>
-							<!--time + read + comment-->
-							<div class="LYHLabelTimeCountRead">
-								06-24 阅读30 评论9
+							<div class="mui-slider-item">
+								<a href="#"><img src="images/1.jpg" /></a>
+							</div>
+							<div class="mui-slider-item">
+								<a href="#"><img src="images/2.jpg" /></a>
+							</div>
+							<div class="mui-slider-item mui-slider-item-duplicate">
+								<a href="#"><img src="images/1.jpg" /></a>
 							</div>
 						</div>
-					</a>
-				</li>
-			</ul>
-		</div>
+						<div class="mui-slider-indicator">
+							<div class="mui-indicator mui-active"></div>
+							<div class="mui-indicator"></div>
+						</div>
+					</div>
+				</div>
+				<!--最下面的cell-->
+				<div>
+					<ul class="mui-table-view" id="class-boxout">
+						<li class="mui-table-view-cell mui-media" style="display: none;">
+							<a href="javascript:;">
+								<img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
+								<div class="mui-media-body">
+									肺癌（title）
+									<p class="mui-ellipsis">这是肺癌的sunmmy；能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+									<!--标签-->
+									<div class="LYHMark">
+										乳腺癌
+									</div>
+									<!--time + read + comment-->
+									<div class="LYHLabelTimeCountRead">
+										06-24 阅读30 评论9
+									</div>
+								</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
 		</div>
 		<script src="js/castapp.js"></script>
 		<script src="js/LYHMain.js"></script>
 		<script src="js/mui.js"></script>
 		<script type="text/javascript">
 			ca.init();
+
+			castapp.receiveNotice('home_sub', function(event) {
+				var name = event.detail.name;
+//				alert(name);
+				alert('444');
+			});
+
 			var url_request = 'https://www.liangyihui.net/api/doc/getdocumentlist'
 			var jsonData = '{"head":{"sid":"Model:iPod touch---Version:9.0.2","extensions":[{"name":"platform","value":"iOS"}],"cver":"2.0.2","cid":"61B711D4-0087-4C94-9D7F-2632A9BC43B5"},"filters":[{"items":[{"filterId":1}],"filterGroupId": 1}],"sort":{"pageIdx":0,"pageSize":25,"startTime":1469696344.835954}}'
 			var calssOut = document.getElementById('class-boxout');
@@ -169,7 +178,7 @@
 				}
 			});
 			//下拉和上拉刷新
-						mui.init({
+			mui.init({
 				pullRefresh: {
 					container: '#pullrefresh',
 					down: {
@@ -186,10 +195,10 @@
 			 */
 			function pulldownRefresh() {
 				setTimeout(function() {
-					alert('下拉刷新方法');
+					//						alert('下拉刷新方法');
 					var table = document.body.querySelector('.mui-table-view');
 					var cells = document.body.querySelectorAll('.mui-table-view-cell');
-					for (var i = cells.length, len = i + 3; i < len; i++) {
+					for(var i = cells.length, len = i + 3; i < len; i++) {
 						var li = document.createElement('li');
 						li.className = 'mui-table-view-cell';
 						li.innerHTML = '<a class="mui-navigate-right">Item ' + (i + 1) + '</a>';
@@ -205,11 +214,11 @@
 			 */
 			function pullupRefresh() {
 				setTimeout(function() {
-					alert('上啦刷新方法');
+					//						alert('上啦刷新方法');
 					mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > 2)); //参数为true代表没有更多数据了。
 					var table = document.body.querySelector('.mui-table-view');
 					var cells = document.body.querySelectorAll('.mui-table-view-cell');
-					for (var i = cells.length, len = i + 20; i < len; i++) {
+					for(var i = cells.length, len = i + 20; i < len; i++) {
 						var li = document.createElement('li');
 						li.className = 'mui-table-view-cell';
 						li.innerHTML = '<a class="mui-navigate-right">Item ' + (i + 1) + '</a>';
@@ -217,7 +226,7 @@
 					}
 				}, 1500);
 			}
-			if (mui.os.plus) {
+			if(mui.os.plus) {
 				mui.plusReady(function() {
 					setTimeout(function() {
 						mui('#pullrefresh').pullRefresh().pullupLoading();
@@ -231,7 +240,6 @@
 				});
 			}
 		</script>
-
 	</body>
 
 </html>
