@@ -138,10 +138,11 @@
 }
 
 .MeCellLeftIcon img {
-	width: 30px !important;
-	height: 30px !important;
+	width: 20px !important;
+	height: 20px !important;
 	position: relative;
-	top: 6px;
+	margin-left: 5px;
+	top: 10px;
 }
 
 .MeCellTItle {
@@ -155,12 +156,13 @@
 
 .MeCellRightIcon {
 	float: right;
-	margin-top: 5px;
+	margin-top: 10px;
+	margin-left: 5px;
 }
 
 .MeCellRightIcon img {
-	width: 20px !important;
-	height: 20px !important;
+	width: 10px !important;
+	height: 10px !important;
 	margin-top: 6px;
 }
 .MeCellOther {
