@@ -8,7 +8,7 @@
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<link rel="stylesheet" href="css/mui.min.css">
-			<link rel="stylesheet" href="css/LYHMain.css">
+		<link rel="stylesheet" href="css/LYHMain.css">
 	</head>
 
 	<body>
@@ -28,7 +28,9 @@
 	</body>
 	<script src="js/mui.min.js"></script>
 	<script src="js/castapp.js"></script>
+	<script src="js/castapp.js"></script>
 	<script type="text/javascript">
+		ca.init();
 		//启用双击监听
 		mui.init({
 			gestureConfig: {
@@ -50,49 +52,35 @@
 			}
 			contentWebview.evalJS("mui('#pullrefresh').pullRefresh().scrollTo(0,0,100)");
 		});
-			//实现点击切换功能========================================
-				var index = 0;
-				var arrayTagA = document.getElementsByTagName('a');
-				for(var a = 0; a < arrayTagA.length; a++) {
-					arrayTagA[a].index = a;
-					//点击事件
-					arrayTagA[a].onclick = function() {
-						//判断是否点击了相同的channal
-						if(this.index === index) {
-							alert('当前频道已经是您点击的频道');
-							return;
-						}
-						index = this.index;
-						//1.先将所有的 className = "" ,目的去掉下滑线
-						for(var b = 0; b < arrayTagA.length; b++) {
-							arrayTagA[b].className = "";
-						}
-						//2.将this，也就是点击的这个className = active-a ,目的将下滑线加上
-						this.className = 'active-a';
-						var channal = this.innerHTML;
-						var targetPage = 'home_sub.html';
-						var notificationName = channal;
-						var noticeArr = [targetPage]; // 通知id数组					
-						var notice = 'home_sub'; // 通知id单个字符串
-						dongyi.sendNotice(notice,'home_sub.html',{		
-						name:notificationName
-						});
-						
-						
-						if(channal === '推荐') {
-							//发通知
-							alert('推荐');
-							
-							
-						} else if(channal === '订阅') {
-						
-						} else if(channal === '公开课') {
-						
-						} else {
-			
-						}
-					}
+		//实现点击切换功能========================================
+		var index = 0;
+		var arrayTagA = document.getElementsByTagName('a');
+		for(var a = 0; a < arrayTagA.length; a++) {
+			arrayTagA[a].index = a;
+			//点击事件
+			arrayTagA[a].onclick = function() {
+				//判断是否点击了相同的channal
+				if(this.index === index) {
+					alert('当前频道已经是您点击的频道');
+					return;
 				}
+				index = this.index;
+				//1.先将所有的 className = "" ,目的去掉下滑线
+				for(var b = 0; b < arrayTagA.length; b++) {
+					arrayTagA[b].className = "";
+				}
+				//2.将this，也就是点击的这个className = active-a ,目的将下滑线加上
+				this.className = 'active-a';
+				var channal = this.innerHTML;
+				var targetPage = 'home_sub.html';
+				var notificationName = channal;
+				var noticeArr = [targetPage]; // 通知id数组					
+				var notice = 'home_sub.html'; // 通知id单个字符串
+				dongyi.sendNotice(notice, 'home_sub.html', {
+					name: notificationName
+				});			
+			}
+		}
 	</script>
 
 </html>
