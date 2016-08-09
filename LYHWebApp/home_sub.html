@@ -76,24 +76,52 @@
 		<script src="js/mui.js"></script>
 		<script type="text/javascript">
 			ca.init();
+
+			var channalSelected = 1;
 			castapp.receiveNotice('home_sub.html', function(event) {
 				var name = event.detail.name;
 				if(name === '推荐') {
-
+					channalSelected = 1;
+					classSlider.style.display = "block"; //广告栏
+					calssOut.innerHTML = '';
+					var jsonData1 = request_temp.creatRequestDataForNews(0, pageSize);
+					ff_get(url_request, jsonData1, function(data) {
+						pageIndex = 1;
+						mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+						addTempl(data, calssOut);
+					});
 				} else if(name === '订阅') {
+					channalSelected = 2;
 
 				} else if(name === '公开课') {
 
-				} else {
-
+					channalSelected = 3;
+					classSlider.style.display = "none";
+					calssOut.innerHTML = '';
+					var jsonData1 = request_temp.creatRequestDataForNewsOfOpenClass(0, pageSize);
+					ff_get(url_request, jsonData1, function(data) {
+						pageIndex = 1;
+						mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+						addTempl(data, calssOut);
+					});
+				} else { //病例
+					channalSelected = 4;
+					classSlider.style.display = "none";
+					calssOut.innerHTML = '';
+					var jsonData1 = request_temp.creatRequestDataForNewsOfOfSick(0, pageSize);
+					ff_get(url_request, jsonData1, function(data) {
+						pageIndex = 1;
+						mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+						addTempl(data, calssOut);
+					});
 				}
 			});
 			var url_request = 'https://www.liangyihui.net/api/doc/getdocumentlist'
 			var jsonData = '{"head":{"sid":"Model:iPod touch---Version:9.0.2","extensions":[{"name":"platform","value":"iOS"}],"cver":"2.0.2","cid":"61B711D4-0087-4C94-9D7F-2632A9BC43B5"},"filters":[{"items":[{"filterId":1}],"filterGroupId": 1}],"sort":{"pageIdx":0,"pageSize":25,"startTime":1469696344.835954}}'
 			var calssOut = document.getElementById('class-boxout');
 			var classSlider = document.getElementsByClassName('mui-slider')[0];
-			var pageIndex = 0 ;
-			var pageSize = 2 ;
+			var pageIndex = 0;
+			var pageSize = 2;
 			//实现点击切换功能========================================
 			var index = 0;
 			var arrayTagA = document.getElementsByTagName('a');
@@ -115,22 +143,35 @@
 					this.className = 'active-a';
 					var channal = this.innerHTML;
 					if(channal === '推荐') {
-						classSlider.style.display = "block";
+						classSlider.style.display = "block"; //广告栏
 						calssOut.innerHTML = '';
+						pageIndex = 0;
+						var jsonData1 = request_temp.creatRequestDataForNews(0, pageSize);
+						ff_get(url_request, jsonData1, function(data) {
+							pageIndex = 1;
+							mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+							addTempl(data, calssOut);
+						});
 					} else if(channal === '订阅') {
 						classSlider.style.display = "none";
 						calssOut.innerHTML = '';
-
-					} else if(channal ==='公开课') {
+						pageIndex = 0;
+					} else if(channal === '公开课') {
 						classSlider.style.display = "none";
 						calssOut.innerHTML = '';
+						pageIndex = 0;
+						var jsonData1 = request_temp.creatRequestDataForNewsOfOpenClass(0, pageSize);
+						ff_get(url_request, jsonData1, function(data) {
+							pageIndex = 1;
+							mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+							addTempl(data, calssOut);
+						});
 					} else {
 						classSlider.style.display = "none";
 						calssOut.innerHTML = '';
 					}
 				}
-			}
-			//图片轮播================================
+			} //图片轮播================================
 			castapp.pictureScroll({
 				callback: function(pictureNumber) {
 					//输出页数
@@ -139,17 +180,6 @@
 				isAutoScroll: true,
 				scrollTime: 3
 			});
-			//数据请求部分 ============================		
-//			ff_get(url_request, jsonData, function(data) {
-//				var arrayData = data.docGroups;
-//				var arrayObj = arrayData['0'].documents;
-//				for(var a = 0; a < arrayObj.length; a++) {
-//					var obj = arrayObj[a];
-//					var temp = newsCell_tmpl.itemTmpl(obj);
-//					calssOut.innerHTML += temp;
-//				}
-//			});
-		
 			//下拉和上拉刷新
 			mui.init({
 				pullRefresh: {
@@ -168,37 +198,63 @@
 			 */
 			function pulldownRefresh() {
 				calssOut.innerHTML = '';
-				var jsonData1 = request_temp.creatRequestDataForNews(0,pageSize);
-				ff_get(url_request, jsonData1, function(data) {
-				 pageIndex = 1;
-					mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
-					var arrayData = data.docGroups;
-					var arrayObj = arrayData['0'].documents;
-					for(var a = 0; a < arrayObj.length; a++) {
-						var obj = arrayObj[a];
-						var temp = newsCell_tmpl.itemTmpl(obj);
-						calssOut.innerHTML += temp;
-					}
-				});
+				pageIndex = 0;
+				if(channalSelected == 1) { //推荐
+					var jsonData1 = request_temp.creatRequestDataForNews(0, pageSize);
+					ff_get(url_request, jsonData1, function(data) {
+						pageIndex = 1;
+						mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+						addTempl(data, calssOut);
+					});
+
+				} else if(channalSelected == 3) { //公开课
+					var jsonData1 = request_temp.creatRequestDataForNewsOfOpenClass(0, pageSize);
+					ff_get(url_request, jsonData1, function(data) {
+						pageIndex = 1;
+						mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+						addTempl(data, calssOut);
+					});
+
+				} else if(channalSelected == 4) { //病程
+					var jsonData1 = request_temp.creatRequestDataForNewsOfOfSick(0, pageSize);
+					ff_get(url_request, jsonData1, function(data) {
+						pageIndex = 1;
+						mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+						addTempl(data, calssOut);
+					});
+				}
 			}
 			var count = 0;
 			/**
 			 * 上拉加载具体业务实现
 			 */
 			function pullupRefresh() {
-			mui('#pullrefresh').pullRefresh().endPullupToRefresh((1 > 2)); //参数为true代表没有更多数据了。
-				var jsonData1 = request_temp.creatRequestDataForNews(pageIndex,pageSize);
-				ff_get(url_request, jsonData1, function(data) {
-					mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
-					pageIndex ++ ;
-					var arrayData = data.docGroups;
-					var arrayObj = arrayData['0'].documents;
-					for(var a = 0; a < arrayObj.length; a++) {
-						var obj = arrayObj[a];
-						var temp = newsCell_tmpl.itemTmpl(obj);
-						calssOut.innerHTML += temp;
-					}
-				});
+				mui('#pullrefresh').pullRefresh().endPullupToRefresh((1 > 2)); //参数为true代表没有更多数据了。
+
+				if(channalSelected == 1) { //推荐
+					var jsonData1 = request_temp.creatRequestDataForNews(pageIndex, pageSize);
+					ff_get(url_request, jsonData1, function(data) {
+						mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+						pageIndex++;
+						addTempl(data, calssOut);
+					});
+				} else if(channalSelected == 3) { //公开课
+					var jsonData1 = request_temp.creatRequestDataForNewsOfOpenClass(pageIndex, pageSize);
+					ff_get(url_request, jsonData1, function(data) {
+						mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+						pageIndex++;
+						addTempl(data, calssOut);
+					});
+				} else if(channalSelected == 4) { //病程
+					var jsonData1 = request_temp.creatRequestDataForNewsOfOfSick(pageIndex, pageSize);
+					ff_get(url_request, jsonData1, function(data) {
+						mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+						pageIndex++;
+						addTempl(data, calssOut);
+					});
+
+				}
+
 			}
 			if(mui.os.plus) {
 				mui.plusReady(function() {
@@ -212,6 +268,16 @@
 					alert('开始刷新2');
 					mui('#pullrefresh').pullRefresh().pullupLoading();
 				});
+			}
+
+			function addTempl(data, calssOut) {
+				var arrayData = data.docGroups;
+				var arrayObj = arrayData['0'].documents;
+				for(var a = 0; a < arrayObj.length; a++) {
+					var obj = arrayObj[a];
+					var temp = newsCell_tmpl.itemTmpl(obj);
+					calssOut.innerHTML += temp;
+				}
 			}
 		</script>
 	</body>
