@@ -92,6 +92,8 @@
 			var jsonData = '{"head":{"sid":"Model:iPod touch---Version:9.0.2","extensions":[{"name":"platform","value":"iOS"}],"cver":"2.0.2","cid":"61B711D4-0087-4C94-9D7F-2632A9BC43B5"},"filters":[{"items":[{"filterId":1}],"filterGroupId": 1}],"sort":{"pageIdx":0,"pageSize":25,"startTime":1469696344.835954}}'
 			var calssOut = document.getElementById('class-boxout');
 			var classSlider = document.getElementsByClassName('mui-slider')[0];
+			var pageIndex = 0 ;
+			var pageSize = 2 ;
 			//实现点击切换功能========================================
 			var index = 0;
 			var arrayTagA = document.getElementsByTagName('a');
@@ -115,51 +117,16 @@
 					if(channal === '推荐') {
 						classSlider.style.display = "block";
 						calssOut.innerHTML = '';
-						ff_get(url_request, jsonData, function(data) {
-							var arrayData = data.docGroups;
-							var arrayObj = arrayData['0'].documents;
-							for(var a = 0; a < arrayObj.length; a++) {
-								var obj = arrayObj[a];
-								var temp = newsCell_tmpl.itemTmpl(obj);
-								calssOut.innerHTML += temp;
-							}
-						});
 					} else if(channal === '订阅') {
 						classSlider.style.display = "none";
 						calssOut.innerHTML = '';
-						ff_get(url_request, jsonData, function(data) {
-							var arrayData = data.docGroups;
-							var arrayObj = arrayData['0'].documents;
-							for(var a = 0; a < arrayObj.length; a++) {
-								var obj = arrayObj[a];
-								var temp = newsCell_tmpl.itemTmpl(obj);
-								calssOut.innerHTML += temp;
-							}
-						});
-					} else if(channal === '公开课') {
+
+					} else if(channal ==='公开课') {
 						classSlider.style.display = "none";
 						calssOut.innerHTML = '';
-						ff_get(url_request, jsonData, function(data) {
-							var arrayData = data.docGroups;
-							var arrayObj = arrayData['0'].documents;
-							for(var a = 0; a < arrayObj.length; a++) {
-								var obj = arrayObj[a];
-								var temp = newsCell_tmpl.itemTmpl(obj);
-								calssOut.innerHTML += temp;
-							}
-						});
 					} else {
 						classSlider.style.display = "none";
 						calssOut.innerHTML = '';
-						ff_get(url_request, jsonData, function(data) {
-							var arrayData = data.docGroups;
-							var arrayObj = arrayData['0'].documents;
-							for(var a = 0; a < arrayObj.length; a++) {
-								var obj = arrayObj[a];
-								var temp = newsCell_tmpl.itemTmpl(obj);
-								calssOut.innerHTML += temp;
-							}
-						});
 					}
 				}
 			}
@@ -173,15 +140,16 @@
 				scrollTime: 3
 			});
 			//数据请求部分 ============================		
-			ff_get(url_request, jsonData, function(data) {
-				var arrayData = data.docGroups;
-				var arrayObj = arrayData['0'].documents;
-				for(var a = 0; a < arrayObj.length; a++) {
-					var obj = arrayObj[a];
-					var temp = newsCell_tmpl.itemTmpl(obj);
-					calssOut.innerHTML += temp;
-				}
-			});
+//			ff_get(url_request, jsonData, function(data) {
+//				var arrayData = data.docGroups;
+//				var arrayObj = arrayData['0'].documents;
+//				for(var a = 0; a < arrayObj.length; a++) {
+//					var obj = arrayObj[a];
+//					var temp = newsCell_tmpl.itemTmpl(obj);
+//					calssOut.innerHTML += temp;
+//				}
+//			});
+		
 			//下拉和上拉刷新
 			mui.init({
 				pullRefresh: {
@@ -199,54 +167,38 @@
 			 * 下拉刷新具体业务实现
 			 */
 			function pulldownRefresh() {
-				ff_get(url_request, jsonData, function(data) {
-					//							alert('fanhuichenggong');
+				calssOut.innerHTML = '';
+				var jsonData1 = request_temp.creatRequestDataForNews(0,pageSize);
+				ff_get(url_request, jsonData1, function(data) {
+				 pageIndex = 1;
 					mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 					var arrayData = data.docGroups;
 					var arrayObj = arrayData['0'].documents;
 					for(var a = 0; a < arrayObj.length; a++) {
 						var obj = arrayObj[a];
 						var temp = newsCell_tmpl.itemTmpl(obj);
-						
-					
-						
-						
 						calssOut.innerHTML += temp;
 					}
 				});
-
-				alert('正在 下拉刷新')
-					//				setTimeout(function() {
-					//					//alert('下拉刷新方法');
-					//					var table = document.body.querySelector('.mui-table-view');
-					//					var cells = document.body.querySelectorAll('.mui-table-view-cell');
-					//					for(var i = cells.length, len = i + 3; i < len; i++) {
-					//						var li = document.createElement('li');
-					//						li.className = 'mui-table-view-cell';
-					//						li.innerHTML = '<a class="mui-navigate-right">Item ' + (i + 1) + '</a>';
-					//						//下拉刷新，新纪录插到最前面；
-					//						table.insertBefore(li, table.firstChild);
-					//					}
-					//					mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
-					//				}, 1500);
 			}
 			var count = 0;
 			/**
 			 * 上拉加载具体业务实现
 			 */
 			function pullupRefresh() {
-				setTimeout(function() {
-					//						alert('上啦刷新方法');
-					mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > 2)); //参数为true代表没有更多数据了。
-					var table = document.body.querySelector('.mui-table-view');
-					var cells = document.body.querySelectorAll('.mui-table-view-cell');
-					for(var i = cells.length, len = i + 20; i < len; i++) {
-						var li = document.createElement('li');
-						li.className = 'mui-table-view-cell';
-						li.innerHTML = '<a class="mui-navigate-right">Item ' + (i + 1) + '</a>';
-						table.appendChild(li);
+			mui('#pullrefresh').pullRefresh().endPullupToRefresh((1 > 2)); //参数为true代表没有更多数据了。
+				var jsonData1 = request_temp.creatRequestDataForNews(pageIndex,pageSize);
+				ff_get(url_request, jsonData1, function(data) {
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+					pageIndex ++ ;
+					var arrayData = data.docGroups;
+					var arrayObj = arrayData['0'].documents;
+					for(var a = 0; a < arrayObj.length; a++) {
+						var obj = arrayObj[a];
+						var temp = newsCell_tmpl.itemTmpl(obj);
+						calssOut.innerHTML += temp;
 					}
-				}, 1500);
+				});
 			}
 			if(mui.os.plus) {
 				mui.plusReady(function() {
