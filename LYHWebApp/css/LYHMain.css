@@ -99,7 +99,7 @@
 .LYHMe-Cell-Header-imageIcon {
 	width: 80px;
 	height: 100%;
-	background: red;
+	/*background: red;*/
 	float: left;
 }
 
@@ -197,9 +197,11 @@
 .toolClassCell-LeftIcon {
 	/*background: orange;*/
 	float: left;
-	margin-top: 10px;
+	height: 100%;
 	margin-left: 5px;
-	margin-right: 5px;
+}
+.classToolLeftIcon {
+	margin-top: 10px;
 }
 .toolClassCell-Right {
 	/*background: blue;*/
@@ -208,3 +210,4 @@
 	margin-top: 10px;
 	width: 90%;
 }
+

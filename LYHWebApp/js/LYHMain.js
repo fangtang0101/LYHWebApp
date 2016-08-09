@@ -3,53 +3,116 @@
 	window.request_temp = {
 		//推荐（综合）
 		creatRequestDataForNews: function(pageIndex, pageSize) {
-			if (typeof(pageIndex)!="number") {
+			if(typeof(pageIndex) != "number") {
 				alert('您出传入的参数pageIndex必须是number')
-					return;			
+				return;
 			}
-			if (typeof(pageSize)!="number") {
+			if(typeof(pageSize) != "number") {
 				alert('您出传入的参数pageSize必须是number')
-					return;			
+				return;
 			}
-			var jsonData = {"head":{"sid":"Model:iPod touch---Version:9.0.2","extensions":[{"name":"platform","value":"iOS"}],"cver":"2.0.2","cid":"61B711D4-0087-4C94-9D7F-2632A9BC43B5"},"filters":[{"items":[{"filterId":1}],"filterGroupId": 1}],"sort":{"pageIdx":0,"pageSize":25,"startTime":1469696344.835954}}
+			var jsonData = {
+				"head": {
+					"sid": "Model:iPod touch---Version:9.0.2",
+					"extensions": [{
+						"name": "platform",
+						"value": "iOS"
+					}],
+					"cver": "2.0.2",
+					"cid": "61B711D4-0087-4C94-9D7F-2632A9BC43B5"
+				},
+				"filters": [{
+					"items": [{
+						"filterId": 1
+					}],
+					"filterGroupId": 1
+				}],
+				"sort": {
+					"pageIdx": 0,
+					"pageSize": 25,
+					"startTime": 1469696344.835954
+				}
+			}
 			jsonData.sort.pageIdx = pageIndex;
 			jsonData.sort.pageSize = pageSize;
-			var obj = JSON.stringify(jsonData); 
+			var obj = JSON.stringify(jsonData);
 			return obj;
 		},
 		//公开课
-			creatRequestDataForNewsOfOpenClass: function(pageIndex, pageSize) {
-			if (typeof(pageIndex)!="number") {
+		creatRequestDataForNewsOfOpenClass: function(pageIndex, pageSize) {
+			if(typeof(pageIndex) != "number") {
 				alert('您出传入的参数pageIndex必须是number')
-					return;			
+				return;
 			}
-			if (typeof(pageSize)!="number") {
+			if(typeof(pageSize) != "number") {
 				alert('您出传入的参数pageSize必须是number')
-					return;			
+				return;
 			}
-			var jsonData	 = {"head" : {"sid" : "Model:iPhone---Version:9.3","extensions" : [{"name" : "platform","value" : "iOS"}],"cver" : "2.0.5","cid" : "03D25FDC-CFF5-44D5-9662-3C957133C23D"},"filters" : [{"items" : [{"filterId" : 8}],"filterGroupId" : 1}],"sort" : {"pageIdx" : 0,"pageSize" : 25,"startTime" : 1470728140.433903}} 
+			var jsonData = {
+				"head": {
+					"sid": "Model:iPhone---Version:9.3",
+					"extensions": [{
+						"name": "platform",
+						"value": "iOS"
+					}],
+					"cver": "2.0.5",
+					"cid": "03D25FDC-CFF5-44D5-9662-3C957133C23D"
+				},
+				"filters": [{
+					"items": [{
+						"filterId": 8
+					}],
+					"filterGroupId": 1
+				}],
+				"sort": {
+					"pageIdx": 0,
+					"pageSize": 25,
+					"startTime": 1470728140.433903
+				}
+			}
 			jsonData.sort.pageIdx = pageIndex;
 			jsonData.sort.pageSize = pageSize;
-			var obj = JSON.stringify(jsonData); 
+			var obj = JSON.stringify(jsonData);
 			return obj;
 		},
 		//病例
-			creatRequestDataForNewsOfOfSick: function(pageIndex, pageSize) {
-			if (typeof(pageIndex)!="number") {
+		creatRequestDataForNewsOfOfSick: function(pageIndex, pageSize) {
+			if(typeof(pageIndex) != "number") {
 				alert('您出传入的参数pageIndex必须是number')
-					return;			
+				return;
 			}
-			if (typeof(pageSize)!="number") {
+			if(typeof(pageSize) != "number") {
 				alert('您出传入的参数pageSize必须是number')
-					return;			
+				return;
 			}
-			var jsonData	 = {"head" : {"sid" : "Model:iPhone---Version:9.3","extensions" : [{"name" : "platform","value" : "iOS"}],"cver" : "2.0.5","cid" : "444AD7D5-23AE-4DFB-942D-B19D2A7333D9"},"filters" : [{"items" : [{"filterId" : 10,"type" : 1}],"filterGroupId" : 1}],"sort" : {"pageIdx" : 0,"pageSize" : 25,"startTime" : 1470729208.550684}} 
+			var jsonData = {
+				"head": {
+					"sid": "Model:iPhone---Version:9.3",
+					"extensions": [{
+						"name": "platform",
+						"value": "iOS"
+					}],
+					"cver": "2.0.5",
+					"cid": "444AD7D5-23AE-4DFB-942D-B19D2A7333D9"
+				},
+				"filters": [{
+					"items": [{
+						"filterId": 10,
+						"type": 1
+					}],
+					"filterGroupId": 1
+				}],
+				"sort": {
+					"pageIdx": 0,
+					"pageSize": 25,
+					"startTime": 1470729208.550684
+				}
+			}
 			jsonData.sort.pageIdx = pageIndex;
 			jsonData.sort.pageSize = pageSize;
-			var obj = JSON.stringify(jsonData); 
+			var obj = JSON.stringify(jsonData);
 			return obj;
 		},
-		
 	};
 
 	window.newsCell_tmpl = {
@@ -67,8 +130,21 @@
 			var imageUrl = obj.picUrl;
 			var titleCell = obj.title;
 			var contentCell = '这是内容';
-			var markCell = 'mark';
-			var timeCell = '这是时间time';
+			var markCell = 'markNull';
+			var timeCell = 'time + readCount';
+			//便签
+			var arrayLabel = obj.labels;
+			if(arrayLabel.length > 0) {
+				var objLabel = arrayLabel[0];
+				markCell = objLabel.name;
+			}
+			//时间
+			var date = new Date(obj.releaseTime);
+			Y = date.getFullYear() + '-';
+			M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+			D = date.getDate() + ' ';		
+			var dateArctile = M + D ;
+			timeCell = dateArctile + '阅'+obj.readAmount ;
 			var tmpl = '<ul class="mui-table-view" >' +
 				'<li class="mui-table-view-cell mui-media">' +
 				'<a href="javascript:;">' +

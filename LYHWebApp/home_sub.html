@@ -84,8 +84,10 @@
 					channalSelected = 1;
 					classSlider.style.display = "block"; //广告栏
 					calssOut.innerHTML = '';
+					dongyi.showWaiting('正在刷新数据');
 					var jsonData1 = request_temp.creatRequestDataForNews(0, pageSize);
 					ff_get(url_request, jsonData1, function(data) {
+						dongyi.closeWaiting();
 						pageIndex = 1;
 						mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 						addTempl(data, calssOut);
@@ -94,12 +96,13 @@
 					channalSelected = 2;
 
 				} else if(name === '公开课') {
-
 					channalSelected = 3;
 					classSlider.style.display = "none";
 					calssOut.innerHTML = '';
 					var jsonData1 = request_temp.creatRequestDataForNewsOfOpenClass(0, pageSize);
+					dongyi.showWaiting('正在刷新数据');
 					ff_get(url_request, jsonData1, function(data) {
+						dongyi.closeWaiting();
 						pageIndex = 1;
 						mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 						addTempl(data, calssOut);
@@ -109,7 +112,9 @@
 					classSlider.style.display = "none";
 					calssOut.innerHTML = '';
 					var jsonData1 = request_temp.creatRequestDataForNewsOfOfSick(0, pageSize);
+					dongyi.showWaiting('正在刷新数据');
 					ff_get(url_request, jsonData1, function(data) {
+						dongyi.closeWaiting();
 						pageIndex = 1;
 						mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 						addTempl(data, calssOut);
@@ -121,57 +126,9 @@
 			var calssOut = document.getElementById('class-boxout');
 			var classSlider = document.getElementsByClassName('mui-slider')[0];
 			var pageIndex = 0;
-			var pageSize = 2;
-			//实现点击切换功能========================================
-			var index = 0;
-			var arrayTagA = document.getElementsByTagName('a');
-			for(var a = 0; a < arrayTagA.length; a++) {
-				arrayTagA[a].index = a;
-				//点击事件
-				arrayTagA[a].onclick = function() {
-					//判断是否点击了相同的channal
-					if(this.index === index) {
-						alert('当前频道已经是您点击的频道');
-						return;
-					}
-					index = this.index;
-					//1.先将所有的 className = "" ,目的去掉下滑线
-					for(var b = 0; b < arrayTagA.length; b++) {
-						arrayTagA[b].className = "";
-					}
-					//2.将this，也就是点击的这个className = active-a ,目的将下滑线加上
-					this.className = 'active-a';
-					var channal = this.innerHTML;
-					if(channal === '推荐') {
-						classSlider.style.display = "block"; //广告栏
-						calssOut.innerHTML = '';
-						pageIndex = 0;
-						var jsonData1 = request_temp.creatRequestDataForNews(0, pageSize);
-						ff_get(url_request, jsonData1, function(data) {
-							pageIndex = 1;
-							mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
-							addTempl(data, calssOut);
-						});
-					} else if(channal === '订阅') {
-						classSlider.style.display = "none";
-						calssOut.innerHTML = '';
-						pageIndex = 0;
-					} else if(channal === '公开课') {
-						classSlider.style.display = "none";
-						calssOut.innerHTML = '';
-						pageIndex = 0;
-						var jsonData1 = request_temp.creatRequestDataForNewsOfOpenClass(0, pageSize);
-						ff_get(url_request, jsonData1, function(data) {
-							pageIndex = 1;
-							mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
-							addTempl(data, calssOut);
-						});
-					} else {
-						classSlider.style.display = "none";
-						calssOut.innerHTML = '';
-					}
-				}
-			} //图片轮播================================
+			var pageSize = 25;
+		
+			 //图片轮播================================
 			castapp.pictureScroll({
 				callback: function(pictureNumber) {
 					//输出页数
@@ -199,17 +156,19 @@
 			function pulldownRefresh() {
 				calssOut.innerHTML = '';
 				pageIndex = 0;
+				dongyi.showWaiting('正在刷新数据');
 				if(channalSelected == 1) { //推荐
 					var jsonData1 = request_temp.creatRequestDataForNews(0, pageSize);
 					ff_get(url_request, jsonData1, function(data) {
+						dongyi.closeWaiting();
 						pageIndex = 1;
 						mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 						addTempl(data, calssOut);
 					});
-
 				} else if(channalSelected == 3) { //公开课
 					var jsonData1 = request_temp.creatRequestDataForNewsOfOpenClass(0, pageSize);
 					ff_get(url_request, jsonData1, function(data) {
+						dongyi.closeWaiting();
 						pageIndex = 1;
 						mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 						addTempl(data, calssOut);
@@ -218,6 +177,7 @@
 				} else if(channalSelected == 4) { //病程
 					var jsonData1 = request_temp.creatRequestDataForNewsOfOfSick(0, pageSize);
 					ff_get(url_request, jsonData1, function(data) {
+						dongyi.closeWaiting();
 						pageIndex = 1;
 						mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 						addTempl(data, calssOut);
@@ -228,12 +188,13 @@
 			/**
 			 * 上拉加载具体业务实现
 			 */
-			function pullupRefresh() {
-				mui('#pullrefresh').pullRefresh().endPullupToRefresh((1 > 2)); //参数为true代表没有更多数据了。
-
+			function pullupRefresh() {			
+				mui('#pullrefresh').pullRefresh().endPullupToRefresh((1 > 2)); //参数为true代表没有更多数据了。			
+				dongyi.showWaiting('正在加载更多数据');
 				if(channalSelected == 1) { //推荐
 					var jsonData1 = request_temp.creatRequestDataForNews(pageIndex, pageSize);
 					ff_get(url_request, jsonData1, function(data) {
+						dongyi.closeWaiting();
 						mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 						pageIndex++;
 						addTempl(data, calssOut);
@@ -241,6 +202,7 @@
 				} else if(channalSelected == 3) { //公开课
 					var jsonData1 = request_temp.creatRequestDataForNewsOfOpenClass(pageIndex, pageSize);
 					ff_get(url_request, jsonData1, function(data) {
+						dongyi.closeWaiting();
 						mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 						pageIndex++;
 						addTempl(data, calssOut);
@@ -248,6 +210,7 @@
 				} else if(channalSelected == 4) { //病程
 					var jsonData1 = request_temp.creatRequestDataForNewsOfOfSick(pageIndex, pageSize);
 					ff_get(url_request, jsonData1, function(data) {
+						dongyi.closeWaiting();
 						mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 						pageIndex++;
 						addTempl(data, calssOut);
@@ -260,7 +223,7 @@
 				mui.plusReady(function() {
 					setTimeout(function() {
 						mui('#pullrefresh').pullRefresh().pullupLoading();
-						alert('开始刷新1');
+//						alert('开始刷新1');
 					}, 1000);
 				});
 			} else {
