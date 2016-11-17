@@ -71,6 +71,7 @@
 				</div>
 			</div>
 		</div>
+		<script src="js/jquery-3.0.0.js"></script>
 		<script src="js/castapp.js"></script>
 		<script src="js/LYHMain.js"></script>
 		<script src="js/mui.js"></script>
@@ -219,9 +220,7 @@
 						pageIndex++;
 						addTempl(data, calssOut);
 					});
-
 				}
-
 			}
 			if(mui.os.plus) {
 				mui.plusReady(function() {
@@ -246,9 +245,14 @@
 					calssOut.innerHTML += temp;
 				}
 					mui(".mui-table-view").on('tap', '.mui-table-view-cell', function() {
-							alert("000");
+//							alert("000");
 							////获取id
-							//var id = this.getAttribute("id");
+							var vaule = this.getAttribute("docId");
+//							$(".mui-table-view-cell").click(function() {
+
+								alert($(this).attr("docId"));
+//						});
+							alert(vaule + "22");
 							////传值给详情页面，通知加载新数据
 							//mui.fire(detail,'getDetail',{id:id});
 							////打开新闻详情
@@ -256,7 +260,7 @@
 							//window.open('https://www.liangyihui.net/doc/detail?id=33976');
 							mui.openWindow({
 								id: 33976,
-								url: 'https://www.liangyihui.net/doc/detail?id=33976'
+								url: 'https://www.liangyihui.net/doc/detail'+"?id="+vaule
 							});
 						})
 			}
