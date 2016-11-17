@@ -249,18 +249,31 @@
 							////获取id
 							var vaule = this.getAttribute("docId");
 //							$(".mui-table-view-cell").click(function() {
-
 								alert($(this).attr("docId"));
 //						});
 							alert(vaule + "22");
 							////传值给详情页面，通知加载新数据
 							//mui.fire(detail,'getDetail',{id:id});
 							////打开新闻详情
+							
+					
+				var notice = 'newsDetail.html'; // 通知id单个字符串
+				dongyi.sendNotice(notice, 'home_sub.html', {
+					name: '通知'
+//					alert("noce"+name);
+//					console.log("noce"+name);
+				})
 
-							//window.open('https://www.liangyihui.net/doc/detail?id=33976');
 							mui.openWindow({
-								id: 33976,
-								url: 'https://www.liangyihui.net/doc/detail'+"?id="+vaule
+								id: 'newsDetail',
+								url:'newsDetail.html',
+								 styles:{
+//    top:44,//新页面顶部位置
+//    bottom:newage-bottom-position,//新页面底部位置
+//    width:newpage-width,//新页面宽度，默认为100%
+//    height:newpage-height,//新页面高度，默认为100%
+//    ......
+    },
 							});
 						})
 			}
