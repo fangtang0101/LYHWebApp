@@ -91,6 +91,9 @@
 						pageIndex = 1;
 						mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 						addTempl(data, calssOut);
+
+
+
 					});
 				} else if(name === '订阅') {
 					channalSelected = 2;
@@ -106,6 +109,7 @@
 						pageIndex = 1;
 						mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 						addTempl(data, calssOut);
+
 					});
 				} else { //病例
 					channalSelected = 4;
@@ -127,8 +131,8 @@
 			var classSlider = document.getElementsByClassName('mui-slider')[0];
 			var pageIndex = 0;
 			var pageSize = 25;
-		
-			 //图片轮播================================
+
+			//图片轮播================================
 			castapp.pictureScroll({
 				callback: function(pictureNumber) {
 					//输出页数
@@ -188,7 +192,7 @@
 			/**
 			 * 上拉加载具体业务实现
 			 */
-			function pullupRefresh() {			
+			function pullupRefresh() {
 				mui('#pullrefresh').pullRefresh().endPullupToRefresh((1 > 2)); //参数为true代表没有更多数据了。			
 				dongyi.showWaiting('正在加载更多数据');
 				if(channalSelected == 1) { //推荐
@@ -223,7 +227,7 @@
 				mui.plusReady(function() {
 					setTimeout(function() {
 						mui('#pullrefresh').pullRefresh().pullupLoading();
-//						alert('开始刷新1');
+						//						alert('开始刷新1');
 					}, 1000);
 				});
 			} else {
@@ -241,6 +245,20 @@
 					var temp = newsCell_tmpl.itemTmpl(obj);
 					calssOut.innerHTML += temp;
 				}
+					mui(".mui-table-view").on('tap', '.mui-table-view-cell', function() {
+							alert("000");
+							////获取id
+							//var id = this.getAttribute("id");
+							////传值给详情页面，通知加载新数据
+							//mui.fire(detail,'getDetail',{id:id});
+							////打开新闻详情
+
+							//window.open('https://www.liangyihui.net/doc/detail?id=33976');
+							mui.openWindow({
+								id: 33976,
+								url: 'https://www.liangyihui.net/doc/detail?id=33976'
+							});
+						})
 			}
 		</script>
 	</body>
