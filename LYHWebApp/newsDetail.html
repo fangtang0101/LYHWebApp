@@ -23,8 +23,12 @@
 		ca.init();
 		castapp.receiveNotice('newsDetail.html', function(event) {
 				var name = event.detail.name;
+				var docId = event.detail.docId;
 				alert("name"+name);
+				alert("docId"+ docId);
+				dongyi.showWaiting('正在刷新数据');
 			});
+			alert("kandao le me docId");
 		//启用双击监听
 		mui.init({
 			gestureConfig: {

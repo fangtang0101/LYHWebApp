@@ -144,9 +144,10 @@
 			M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
 			D = date.getDate() + ' ';		
 			var dateArctile = M + D ;
+			var docID = obj.docId;
 			timeCell = dateArctile + '阅'+obj.readAmount ;
-			var tmpl = '<ul class="mui-table-view" >' +
-				'<li class="mui-table-view-cell mui-media">' +
+			var tmpl = '<ul class="mui-table-view"  >' +
+				'<li class="mui-table-view-cell mui-media" docId = docID>' +
 				'<a href="javascript:;">' +
 				'<img class="mui-media-object mui-pull-left" src="' + imageUrl + '">' +
 				'<div class="mui-media-body">' +

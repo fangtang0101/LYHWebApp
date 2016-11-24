@@ -77,7 +77,6 @@
 		<script src="js/mui.js"></script>
 		<script type="text/javascript">
 			ca.init();
-
 			var channalSelected = 1;
 			castapp.receiveNotice('home_sub.html', function(event) {
 				var name = event.detail.name;
@@ -92,13 +91,9 @@
 						pageIndex = 1;
 						mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 						addTempl(data, calssOut);
-
-
-
 					});
 				} else if(name === '订阅') {
 					channalSelected = 2;
-
 				} else if(name === '公开课') {
 					channalSelected = 3;
 					classSlider.style.display = "none";
@@ -110,7 +105,6 @@
 						pageIndex = 1;
 						mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 						addTempl(data, calssOut);
-
 					});
 				} else { //病例
 					channalSelected = 4;
@@ -226,7 +220,7 @@
 				mui.plusReady(function() {
 					setTimeout(function() {
 						mui('#pullrefresh').pullRefresh().pullupLoading();
-						//						alert('开始刷新1');
+						//alert('开始刷新1');
 					}, 1000);
 				});
 			} else {
@@ -235,7 +229,6 @@
 					mui('#pullrefresh').pullRefresh().pullupLoading();
 				});
 			}
-
 			function addTempl(data, calssOut) {
 				var arrayData = data.docGroups;
 				var arrayObj = arrayData['0'].documents;
@@ -245,25 +238,15 @@
 					calssOut.innerHTML += temp;
 				}
 					mui(".mui-table-view").on('tap', '.mui-table-view-cell', function() {
-//							alert("000");
-							////获取id
-							var vaule = this.getAttribute("docId");
-//							$(".mui-table-view-cell").click(function() {
-								alert($(this).attr("docId"));
-//						});
-							alert(vaule + "22");
-							////传值给详情页面，通知加载新数据
-							//mui.fire(detail,'getDetail',{id:id});
-							////打开新闻详情
-							
-					
+							//获取id
+							var vaule = this.getAttribute("docId"); //$(this).attr("docId")+"docId"（也行）
+							alert(vaule + "value");
+						   //打开新闻详情
 				var notice = 'newsDetail.html'; // 通知id单个字符串
-				dongyi.sendNotice(notice, 'home_sub.html', {
-					name: '通知'
-//					alert("noce"+name);
-//					console.log("noce"+name);
+				dongyi.sendNotice(notice, 'newsDetail.html', {
+					name: '通知',
+					"docId":vaule
 				})
-
 							mui.openWindow({
 								id: 'newsDetail',
 								url:'newsDetail.html',
