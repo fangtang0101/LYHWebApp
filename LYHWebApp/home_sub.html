@@ -229,6 +229,7 @@
 					mui('#pullrefresh').pullRefresh().pullupLoading();
 				});
 			}
+
 			function addTempl(data, calssOut) {
 				var arrayData = data.docGroups;
 				var arrayObj = arrayData['0'].documents;
@@ -237,28 +238,34 @@
 					var temp = newsCell_tmpl.itemTmpl(obj);
 					calssOut.innerHTML += temp;
 				}
-					mui(".mui-table-view").on('tap', '.mui-table-view-cell', function() {
-							//获取id
-							var vaule = this.getAttribute("docId"); //$(this).attr("docId")+"docId"（也行）
-							alert(vaule + "value");
-						   //打开新闻详情
-				var notice = 'newsDetail.html'; // 通知id单个字符串
-				dongyi.sendNotice(notice, 'newsDetail.html', {
-					name: '通知',
-					"docId":vaule
+				mui(".mui-table-view").on('tap', '.mui-table-view-cell', function() {
+					//获取id
+					var vaule = this.getAttribute("docId"); //$(this).attr("docId")+"docId"（也行）
+					alert(vaule + this.getAttribute("class"));
+					if(window.localStorage) {
+//						localStorage.docId = 33972;
+						localStorage.docId = vaule;
+//						alert(localStorage.docId);
+					} else {}
+
+					//					$.totalStorage('docId', vaule);
+					//					var notice = 'newsDetail.html'; // 通知id单个字符串
+					//					dongyi.sendNotice(notice, 'newsDetail.html', {
+					//						name: '通知',
+					//						"docId": vaule
+					//					})
+					mui.openWindow({
+						id: 'newsDetail',
+						url: 'newsDetail.html',
+						styles: {
+							//    top:44,//新页面顶部位置
+							//    bottom:newage-bottom-position,//新页面底部位置
+							//    width:newpage-width,//新页面宽度，默认为100%
+							//    height:newpage-height,//新页面高度，默认为100%
+							//    ......
+						},
+					});
 				})
-							mui.openWindow({
-								id: 'newsDetail',
-								url:'newsDetail.html',
-								 styles:{
-//    top:44,//新页面顶部位置
-//    bottom:newage-bottom-position,//新页面底部位置
-//    width:newpage-width,//新页面宽度，默认为100%
-//    height:newpage-height,//新页面高度，默认为100%
-//    ......
-    },
-							});
-						})
 			}
 		</script>
 	</body>

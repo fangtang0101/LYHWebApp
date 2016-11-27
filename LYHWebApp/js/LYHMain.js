@@ -146,8 +146,11 @@
 			var dateArctile = M + D ;
 			var docID = obj.docId;
 			timeCell = dateArctile + '阅'+obj.readAmount ;
+			
+//			alert(docID +"docID");
+
 			var tmpl = '<ul class="mui-table-view"  >' +
-				'<li class="mui-table-view-cell mui-media" docId = docID>' +
+				'<li class="mui-table-view-cell mui-media" docId ="' + docID + '">' +
 				'<a href="javascript:;">' +
 				'<img class="mui-media-object mui-pull-left" src="' + imageUrl + '">' +
 				'<div class="mui-media-body">' +
